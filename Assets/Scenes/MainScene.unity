@@ -330,6 +330,10 @@ PrefabInstance:
       propertyPath: _centerEyeCamera
       value: 
       objectReference: {fileID: 1234062620}
+    - target: {fileID: 2978571458893240915, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
+      propertyPath: _deadZone
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3845164589554561886, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -353,6 +357,14 @@ PrefabInstance:
     - target: {fileID: 3903482226209413050, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996993228225302494, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
+      propertyPath: _property
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147102894439380630, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
+      propertyPath: _turnMethod
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4148778239110795873, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
       propertyPath: m_Name
@@ -406,6 +418,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4771475775409541943, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
+      propertyPath: _invertXAxis
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5801245061754409418, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
       propertyPath: _playerEyes
       value: 
@@ -418,6 +434,14 @@ PrefabInstance:
       propertyPath: _ovrCameraRig
       value: 
       objectReference: {fileID: 21089556}
+    - target: {fileID: 8642537477760321814, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
+      propertyPath: _maxIterationsPerFrame
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8642537478755289203, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
+      propertyPath: _openSelector
+      value: 
+      objectReference: {fileID: 135085703}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -550,6 +574,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1438083384}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &135085703 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1021936096635069893, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
+  m_PrefabInstance: {fileID: 25331565}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd9780be7e512049b4d33d5c9d0ac92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
