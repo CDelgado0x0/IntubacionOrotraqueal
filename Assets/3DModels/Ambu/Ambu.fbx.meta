@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 62fbc83da0f316d409e8751ae61516b2
+guid: 8ddc161810820ba4dbc133bc4e980a2f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Solido
-    second: {fileID: 2100000, guid: d483f7757025022469953af77ad84a26, type: 2}
+      name: Material
+    second: {fileID: 2100000, guid: 44a47bedb26527b4baddb0aee0065a49, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Transparente
-    second: {fileID: 2100000, guid: 77a456315224aee45adf7b83691ed2d2, type: 2}
+      name: Trasparente
+    second: {fileID: 2100000, guid: 47439facac1c5ae4e8db6eb6f338627b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
