@@ -16,8 +16,8 @@ public class AnimationPercentageController : MonoBehaviour
         }
     }
 
-    public void OnPercentageChanged(float value)
+    public void OnChangeSlider(float Value)
     {
-        animationProgress = value;
+        animationProgress = Value;
     }
 }
