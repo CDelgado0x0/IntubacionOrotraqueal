@@ -5,19 +5,21 @@ using UnityEngine;
 public class LaryngoscopeConexion : MonoBehaviour
 {
     private Collider myCollider;
-    private FixedJoint fixedJoint;
     private Transform manosGancho;
+    private Transform nuevosCollidersGancho;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         myCollider = GetComponent<Collider>();
+        nuevosCollidersGancho = transform.Find("GanchoColliders");
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Gancho"))
         {
+            /*
             manosGancho = other.transform.Find("HandGrab");
             Rigidbody otherRigidbody = other.attachedRigidbody;
 
@@ -38,15 +40,19 @@ public class LaryngoscopeConexion : MonoBehaviour
             fixedJoint = other.gameObject.AddComponent<FixedJoint>();
             fixedJoint.connectedBody = GetComponent<Rigidbody>();
 
-            /*
-            Debug.Log("LaryngoscopeConexion: Gancho detected");
-            Transform manosGancho = other.transform.Find("HandGrab");
+            */
+
+            manosGancho = other.transform.Find("HandGrab");
+            Transform ganchoColliders = other.transform.Find("Colliders");
             Rigidbody otherRigidbody = other.attachedRigidbody;
 
-            if (manosGancho == null || otherRigidbody == null) return;
+            if (manosGancho == null || otherRigidbody == null || ganchoColliders == null) return;
 
-            manosGancho.gameObject.SetActive(false);
             myCollider.enabled = false;
+            manosGancho.gameObject.SetActive(false);
+            ganchoColliders.gameObject.SetActive(false);
+            nuevosCollidersGancho.gameObject.SetActive(true);
+
 
             //otherRigidbody.UnlockKinematic();
             other.transform.SetParent(transform);
@@ -54,14 +60,7 @@ public class LaryngoscopeConexion : MonoBehaviour
             other.transform.localRotation = Quaternion.identity;
             otherRigidbody.isKinematic = true;
             //otherRigidbody.LockKinematic();
-            */
 
         }
-    }
-
-    IEnumerator EsperarUnSegundo()
-    {
-        yield return new WaitForSeconds(1f);
-        if (manosGancho != null) manosGancho.gameObject.SetActive(true);
     }
 }
