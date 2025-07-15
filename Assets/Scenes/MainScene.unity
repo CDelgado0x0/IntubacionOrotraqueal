@@ -639,7 +639,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1510222829}
   animationProgress: 0
-  animationStateName: Andando
 --- !u!114 &187566881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,7 +693,7 @@ MonoBehaviour:
       - m_Target: {fileID: 187566880}
         m_TargetAssemblyTypeName: AnimationPercentageController, Assembly-CSharp
         m_MethodName: OnChangeSlider
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

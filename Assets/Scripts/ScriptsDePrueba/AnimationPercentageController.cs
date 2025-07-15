@@ -5,19 +5,20 @@ public class AnimationPercentageController : MonoBehaviour
     public Animator animator;
     [Range(0f, 1f)]
     public float animationProgress = 0f;
-    public string animationStateName = "Andando"; // Nombre del estado de la animación en el Animator
 
-    private void Update()
+    private int stateHash;
+
+    void Start()
     {
-        if (animator)
-        {
-            animator.Play(animationStateName, 0, animationProgress);
-            animator.speed = 0; // Detener el avance automático
-        }
+        stateHash = animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+        animator.speed = 0; // Para que no avance solo
+        animator.Play(stateHash, 0, 0f); // Inicia animación en 0
     }
 
-    public void OnChangeSlider(float Value)
+    public void OnChangeSlider(float value)
     {
-        animationProgress = Value;
+        animationProgress = Mathf.Clamp01(value);
+        animator.Play(stateHash, 0, animationProgress);
+        animator.Update(0);
     }
 }
