@@ -121,14 +121,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98237212778413022}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4952369625440813042}
   m_Father: {fileID: 5734001570201851754}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &976745362692238751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 5395139035375937725}
   - component: {fileID: 6890149028754090278}
   - component: {fileID: 83477127375366279}
+  - component: {fileID: 8363283931656640429}
   m_Layer: 0
   m_Name: "ControladorAnimaci\xF3n"
   m_TagString: Untagged
@@ -349,7 +350,19 @@ MonoBehaviour:
       m_Calls: []
   _whenMove:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8363283931656640429}
+        m_TargetAssemblyTypeName: ControladorAnimacion, Assembly-CSharp
+        m_MethodName: OnControllerSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _whenCancel:
     m_PersistentCalls:
       m_Calls: []
@@ -474,16 +487,30 @@ MonoBehaviour:
       Value: 0
     MinY:
       Constrain: 1
-      Value: -0.2
+      Value: 0
     MaxY:
       Constrain: 1
-      Value: 0
+      Value: 0.2
     MinZ:
       Constrain: 1
       Value: 0
     MaxZ:
       Constrain: 1
       Value: 0
+--- !u!114 &8363283931656640429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581160174238016305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54057db3883faca4696cd959eacb332a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  sliderValue: 0
 --- !u!1 &665036170002339559
 GameObject:
   m_ObjectHideFlags: 0

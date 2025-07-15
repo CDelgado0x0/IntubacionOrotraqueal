@@ -2942,7 +2942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5734001570201851754, guid: 1e7b7ebcfdc000044bafd5fa91954bf2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.22
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 5734001570201851754, guid: 1e7b7ebcfdc000044bafd5fa91954bf2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2976,6 +2976,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8363283931656640429, guid: 1e7b7ebcfdc000044bafd5fa91954bf2, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1510222829}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3728,10 +3732,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaringoscopioGancho
       objectReference: {fileID: 0}
-    - target: {fileID: 648264758325261902, guid: b452b9471cc5cea48b67aa4c30a48600, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1332949625882043924, guid: b452b9471cc5cea48b67aa4c30a48600, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.368
@@ -3833,26 +3833,6 @@ PrefabInstance:
       propertyPath: laryngoscopeCameraCover
       value: 
       objectReference: {fileID: 1793786749}
-    - target: {fileID: 8688895983856760407, guid: cc2f988472426224cb1cdd948e6fe0d4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8688895983856760407, guid: cc2f988472426224cb1cdd948e6fe0d4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8688895983856760407, guid: cc2f988472426224cb1cdd948e6fe0d4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8688895983856760407, guid: cc2f988472426224cb1cdd948e6fe0d4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8688895983856760407, guid: cc2f988472426224cb1cdd948e6fe0d4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
