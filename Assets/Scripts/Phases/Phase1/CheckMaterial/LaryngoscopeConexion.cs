@@ -8,6 +8,8 @@ public class LaryngoscopeConexion : MonoBehaviour
     private Transform manosGancho;
     private Transform nuevosCollidersGancho;
 
+    [SerializeField] private GameObject laryngoscopeCameraCover;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -44,6 +46,7 @@ public class LaryngoscopeConexion : MonoBehaviour
 
             manosGancho = other.transform.Find("HandGrab");
             Transform ganchoColliders = other.transform.Find("Colliders");
+            Transform laryngoscopeLight = other.transform.Find("Light");
             Rigidbody otherRigidbody = other.attachedRigidbody;
 
             if (manosGancho == null || otherRigidbody == null || ganchoColliders == null) return;
@@ -60,6 +63,9 @@ public class LaryngoscopeConexion : MonoBehaviour
             other.transform.localRotation = Quaternion.identity;
             otherRigidbody.isKinematic = true;
             //otherRigidbody.LockKinematic();
+
+            laryngoscopeCameraCover.SetActive(false);
+            laryngoscopeLight.gameObject.SetActive(true);
 
         }
     }
