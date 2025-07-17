@@ -4,34 +4,26 @@ using UnityEngine;
 
 public class AmbuContraints : MonoBehaviour
 {
-    [SerializeField] private Grabbable myGrab;
-    [SerializeField] private GrabFreeTransformer movement;
-    [SerializeField] private GrabFreeTransformer noMovement;
+    [SerializeField] private GameObject ManosAmbu;
+    [SerializeField] private GameObject ManosCompresor;
+
+    private void Start()
+    {
+        ManosAmbu.SetActive(true);
+        ManosCompresor.SetActive(false);
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            lockGrabMovement();
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            unlockGrabMovement();
+            changeGrabMovement();
         }
     }
 
-    public void lockGrabMovement()
+    public void changeGrabMovement()
     {
-        //movement.EndTransform();
-        myGrab.InjectOptionalOneGrabTransformer(noMovement);
-        //noMovement.BeginTransform();
-    }
-
-    public void unlockGrabMovement()
-    {
-        noMovement.EndTransform();
-        myGrab.InjectOptionalOneGrabTransformer(movement);
-        //movement.BeginTransform();
+        ManosAmbu.SetActive(!ManosAmbu.activeSelf);
+        ManosCompresor.SetActive(!ManosCompresor.activeSelf);
     }
 }
