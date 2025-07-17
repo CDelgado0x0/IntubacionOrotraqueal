@@ -12,12 +12,6 @@ public class SmoothBlendShape : MonoBehaviour
 
     void Update()
     {
-        // Activar (por ejemplo, presionando espacio)
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            changeAmbuShape();
-        }
-
         // Interpolación suave hacia el valor objetivo
         currentWeight = Mathf.Lerp(currentWeight, targetWeight, Time.deltaTime * transitionSpeed);
 
