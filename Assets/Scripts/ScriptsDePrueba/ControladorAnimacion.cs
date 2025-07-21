@@ -14,7 +14,7 @@ public class ControladorAnimacion : MonoBehaviour
     void Start()
     {
         minPosition = transform.position;
-        maxPosition = transform.position + new Vector3(0f, 0.2f, 0f);
+        maxPosition = transform.position - new Vector3(0f, 0.2f, 0f);
 
         stateHash = animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
         animator.speed = 0;
