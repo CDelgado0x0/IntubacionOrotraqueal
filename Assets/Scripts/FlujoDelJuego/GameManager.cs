@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
 
     public static event Action<GameState> onGameStateChanged;
 
+    public Material LEDPantallas;
+
+    public Texture[] Instrucciones;
+
     void Awake(){
         applicationController = this;
     }
@@ -29,49 +33,96 @@ public class GameManager : MonoBehaviour
 
         switch(newState){
             case GameState.menuPrincipal:
-                // Aquí puedes agregar lógica específica para el menú principal
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[21]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[21]);
                 break;
-            case GameState.encenderLaringoscopio:
-                // Lógica para encender el laringoscopio
+                case GameState.encenderLaringoscopio:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[0]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[0]);
                 break;
-            case GameState.inflarBalonTuboOrotraqueal:
-                // Lógica para inflar el balón del tubo orotraqueal
+                case GameState.inflarBalonTuboOrotraqueal:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[1]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[1]);
                 break;
-            case GameState.posicionarCabezaPaciente:
-                // Lógica para posicionar la cabeza del paciente
+                case GameState.posicionarCabezaPaciente:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[2]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[2]);
                 break;
-            case GameState.introducirCanulaGirada:
-                // Lógica para introducir la cánula girada
+                case GameState.abrirBocaPaciente:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[3]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[3]);
                 break;
-            case GameState.girarCanula:
-                // Lógica para girar la cánula
+                case GameState.introducirCanulaGirada:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[4]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[4]);
                 break;
-            case GameState.oxigenarPaciente:
-                // Lógica para oxigenar al paciente
+                case GameState.girarCanula:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[5]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[5]);
                 break;
-            case GameState.introducirLaringoscopio:
-                // Lógica para introducir el laringoscopio
+                case GameState.colocarAmbu:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[6]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[6]);
                 break;
-            case GameState.introducirTuboOrotraqueal:
-                // Lógica para introducir el tubo orotraqueal
+                case GameState.oxigenarPaciente:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[7]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[7]);
                 break;
-            case GameState.sacarLaringoscopio:
-                // Lógica para sacar el laringoscopio
+                case GameState.extraerAmbuYCanula:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[8]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[8]);
                 break;
-            case GameState.inflarBalon:
-                // Lógica para inflar el balón
+                case GameState.introducirLaringoscopio:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[9]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[9]);
                 break;
-            case GameState.asegurarTuboEnBoca:
-                // Lógica para asegurar el tubo en la boca
+                case GameState.elevarLaringoscopio:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[10]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[10]);
                 break;
-            case GameState.insuflar:
-                // Lógica para insuflar aire
+                case GameState.orientarTuboOrotraqueal:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[11]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[11]);
                 break;
-            case GameState.comprobarTuboIntroducidoCorrectamente:
-                // Lógica para comprobar si el tubo está introducido correctamente
+                case GameState.introducirTuboOrotraqueal:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[12]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[12]);
                 break;
-            case GameState.simulacionTerminada:
-                // Lógica para finalizar la simulación
+                case GameState.sacarLaringoscopio:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[13]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[13]);
+                break;
+                case GameState.conectarJeringa:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[14]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[14]);
+                break;
+                case GameState.inflarBalon:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[15]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[15]);
+                break;
+                case GameState.quitarJeringa:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[16]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[16]);
+                break;
+                case GameState.asegurarTuboEnBoca:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[17]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[17]);
+                break;
+                case GameState.AcoplarCapnogragoYAmbu:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[18]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[18]);
+                break;
+                case GameState.insuflar:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[19]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[19]);
+                break;
+                case GameState.RealizarAuscultacion:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[20]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[20]);
+                break;
+                case GameState.simulacionTerminada:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[21]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[21]);
                 break;
         }
 
@@ -89,20 +140,28 @@ public enum GameState{
 
     //Fase 2, posicionar al paciente
     posicionarCabezaPaciente,
+    abrirBocaPaciente,
 
     //Fase 3, oxigenación
     introducirCanulaGirada,
     girarCanula,
+    colocarAmbu,
     oxigenarPaciente,
+    extraerAmbuYCanula,
 
     //Fase 4, intubación
     introducirLaringoscopio,
+    elevarLaringoscopio,
+    orientarTuboOrotraqueal,
     introducirTuboOrotraqueal,
     sacarLaringoscopio,
+    conectarJeringa,
     inflarBalon,
+    quitarJeringa,
     asegurarTuboEnBoca,
+    AcoplarCapnogragoYAmbu,
     insuflar,
-    comprobarTuboIntroducidoCorrectamente,
+    RealizarAuscultacion,
 
     simulacionTerminada
 }

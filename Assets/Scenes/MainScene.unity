@@ -1092,6 +1092,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  LEDPantallas: {fileID: 2100000, guid: 04f77b0621c67244793a9666d74ea4d5, type: 2}
+  Instrucciones:
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
+  - {fileID: 2800000, guid: 2f3cd6d20dc291d409b12cff3744dc3d, type: 3}
 --- !u!1 &397071742
 GameObject:
   m_ObjectHideFlags: 0
