@@ -442,6 +442,10 @@ PrefabInstance:
       propertyPath: _ovrCameraRig
       value: 
       objectReference: {fileID: 21089556}
+    - target: {fileID: 7218948594749983592, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
+      propertyPath: _layerMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8642537477760321814, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
       propertyPath: _maxIterationsPerFrame
       value: 3
@@ -3778,6 +3782,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1510222829}
+    - target: {fileID: 8363283931656640429, guid: 1e7b7ebcfdc000044bafd5fa91954bf2, type: 3}
+      propertyPath: sliderValue
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
