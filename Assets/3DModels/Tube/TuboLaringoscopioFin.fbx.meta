@@ -3,7 +3,17 @@ guid: 675e3557c85c63340afe12fafb2909a9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Solido
+    second: {fileID: 2100000, guid: d483f7757025022469953af77ad84a26, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Transparente
+    second: {fileID: 2100000, guid: 77a456315224aee45adf7b83691ed2d2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
