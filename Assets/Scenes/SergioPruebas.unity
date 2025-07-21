@@ -195,6 +195,10 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0.00057479343
       objectReference: {fileID: 0}
+    - target: {fileID: -4122482205462997883, guid: 771fdc5034935c14d9974971d767925d, type: 3}
+      propertyPath: 'm_BlendShapeWeights.Array.data[0]'
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 771fdc5034935c14d9974971d767925d, type: 3}
       propertyPath: m_Name
       value: Ambu
@@ -433,6 +437,124 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1867780360
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a183568571c671742a27646e8e916bf8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.03246489
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a183568571c671742a27646e8e916bf8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.217
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a183568571c671742a27646e8e916bf8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.88364077
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a183568571c671742a27646e8e916bf8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a183568571c671742a27646e8e916bf8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a183568571c671742a27646e8e916bf8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a183568571c671742a27646e8e916bf8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a183568571c671742a27646e8e916bf8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a183568571c671742a27646e8e916bf8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a183568571c671742a27646e8e916bf8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8654869983164507535, guid: a183568571c671742a27646e8e916bf8, type: 3}
+      propertyPath: 'm_BlendShapeWeights.Array.data[0]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a183568571c671742a27646e8e916bf8, type: 3}
+      propertyPath: m_Name
+      value: TuboLaringoscopioFinal
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a183568571c671742a27646e8e916bf8, type: 3}
+--- !u!1001 &1943208175
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 62fbc83da0f316d409e8751ae61516b2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.18975735
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62fbc83da0f316d409e8751ae61516b2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2699
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62fbc83da0f316d409e8751ae61516b2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5341102
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62fbc83da0f316d409e8751ae61516b2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62fbc83da0f316d409e8751ae61516b2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62fbc83da0f316d409e8751ae61516b2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62fbc83da0f316d409e8751ae61516b2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62fbc83da0f316d409e8751ae61516b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62fbc83da0f316d409e8751ae61516b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 62fbc83da0f316d409e8751ae61516b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 62fbc83da0f316d409e8751ae61516b2, type: 3}
+      propertyPath: m_Name
+      value: TuboLaringoscopio
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 62fbc83da0f316d409e8751ae61516b2, type: 3}
 --- !u!1 &2029552593
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,3 +770,5 @@ SceneRoots:
   - {fileID: 2065119836}
   - {fileID: 1442099377}
   - {fileID: 998566047}
+  - {fileID: 1943208175}
+  - {fileID: 1867780360}
