@@ -7,6 +7,7 @@ TagManager:
   - SamplesInfoPanel
   - Gancho
   - Suelo
+  - Jeringa
   layers:
   - Default
   - TransparentFX
