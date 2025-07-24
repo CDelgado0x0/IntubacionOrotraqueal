@@ -6,11 +6,14 @@ public class ConexionJeringaTubo : MonoBehaviour
     private Rigidbody myRb;
     private Transform manosValvula;
     private FixedJoint fixedJoint;
+    private Transform nuevaPosicion;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        myRb = GetComponent<Rigidbody>(); ;
+        myRb = GetComponent<Rigidbody>();
+        manosValvula = transform.Find("Manos");
+        nuevaPosicion = transform.Find("Transform");
     }
 
     void OnTriggerEnter(Collider other)
@@ -19,18 +22,18 @@ public class ConexionJeringaTubo : MonoBehaviour
         {
             if (fixedJoint != null) Destroy(fixedJoint);
 
-            manosValvula = transform.Find("Manos");
+            
 
             manosValvula.gameObject.SetActive(false);
             StartCoroutine(EsperarUnSegundo());
 
             myRb.isKinematic = true;
-            transform.position = other.transform.position;
-            transform.rotation = other.transform.rotation;
+            other.transform.position = nuevaPosicion.position;
+            other.transform.rotation = nuevaPosicion.rotation;
             myRb.isKinematic = false;
 
-            fixedJoint = gameObject.AddComponent<FixedJoint>();
-            fixedJoint.connectedBody = other.attachedRigidbody;
+            fixedJoint = other.gameObject.AddComponent<FixedJoint>();
+            fixedJoint.connectedBody = myRb;
 
 
         }
