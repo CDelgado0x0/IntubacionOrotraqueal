@@ -14,13 +14,13 @@ public class SyringeController : MonoBehaviour
 
     void Start()
     {
-        minPosition = transform.position;
-        maxPosition = transform.position - new Vector3(rangoMovimiento, 0f, 0f);
+        minPosition = transform.localPosition;
+        maxPosition = transform.localPosition - new Vector3(rangoMovimiento, 0f, 0f);
     }
 
     public void OnControllerSelected() //Esto se llama desde el pointable unity event wrapper cuando se selecciona el objeto controlador
     {
-        sliderValue = GetNormalizedPosition(transform.position);
+        sliderValue = GetNormalizedPosition(transform.localPosition) * 100f;
         TubeRenderer.SetBlendShapeWeight(0, sliderValue);
 
     }
