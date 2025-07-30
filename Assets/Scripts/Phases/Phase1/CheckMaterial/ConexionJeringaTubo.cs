@@ -5,29 +5,36 @@ using UnityEngine;
 public class ConexionJeringaTubo : MonoBehaviour
 {
     private Rigidbody myRb;
-    private Transform manosValvula;
+    [SerializeField] private Transform manosValvula;
     private FixedJoint fixedJoint;
-    private Transform nuevaPosicion;
+    [SerializeField] private Transform nuevaPosicion;
 
     //Hacer que cuando la distancia de la valvula sea superior al tamaño de la cuerda se desconecte de la jeringa y se quite de la mano
-    private Transform PosicionPadre;
+    private Transform puntoReferencia;
     [SerializeField] private float maxDistance = 0f; // Distancia máxima permitida para mantener la conexión
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Coroutine reactivarManos;
+
+    private SyringeController controladorJeringa;
+
     void Start()
     {
         myRb = GetComponent<Rigidbody>();
-        manosValvula = transform.Find("Manos");
-        nuevaPosicion = transform.Find("Transform");
-        PosicionPadre = transform.parent;
+        puntoReferencia = transform.parent;
+
+        if (manosValvula == null)
+            Debug.LogWarning("manosValvula no está asignado en el Inspector.");
+
+        if (nuevaPosicion == null)
+            Debug.LogWarning("nuevaPosicion no está asignado en el Inspector.");
     }
 
 
     private void Update()
     {
-        float distance = Vector3.Distance(transform.position, PosicionPadre.position);
+        Transform referencia = fixedJoint != null ? fixedJoint.transform : transform;
 
-        // Si la distancia es mayor al límite, soltar el objeto
+        float distance = Vector3.Distance(referencia.position, puntoReferencia.position);
         if (distance > maxDistance)
         {
             soltarConexion();
@@ -40,9 +47,15 @@ public class ConexionJeringaTubo : MonoBehaviour
         {
             if (fixedJoint != null) Destroy(fixedJoint);
 
+            controladorJeringa = other.GetComponentInChildren<SyringeController>();
+            if (controladorJeringa != null)
+            {
+                controladorJeringa.isConected = true;
+            }
 
             manosValvula.gameObject.SetActive(false);
-            StartCoroutine(EsperarUnSegundo());
+
+            IniciarReactivacion();
 
             myRb.isKinematic = true;
             other.transform.position = nuevaPosicion.position;
@@ -58,7 +71,22 @@ public class ConexionJeringaTubo : MonoBehaviour
     {
         if (fixedJoint != null) Destroy(fixedJoint);
         manosValvula.gameObject.SetActive(false);
-        StartCoroutine(EsperarUnSegundo());
+
+        IniciarReactivacion();
+
+        if (controladorJeringa != null)
+        {
+            controladorJeringa.isConected = false;
+        }
+
+    }
+
+    private void IniciarReactivacion()
+    {
+        if (reactivarManos != null)
+            StopCoroutine(reactivarManos);
+
+        reactivarManos = StartCoroutine(EsperarUnSegundo());
     }
 
     IEnumerator EsperarUnSegundo()
@@ -66,5 +94,7 @@ public class ConexionJeringaTubo : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         manosValvula.gameObject.SetActive(true);
+
+        reactivarManos = null;
     }
 }

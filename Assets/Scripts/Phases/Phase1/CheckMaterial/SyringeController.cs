@@ -12,6 +12,8 @@ public class SyringeController : MonoBehaviour
 
     [SerializeField] private SkinnedMeshRenderer TubeRenderer;
 
+    [HideInInspector] public bool isConected = false;
+
     void Start()
     {
         minPosition = transform.localPosition;
@@ -20,6 +22,7 @@ public class SyringeController : MonoBehaviour
 
     public void OnControllerSelected() //Esto se llama desde el pointable unity event wrapper cuando se selecciona el objeto controlador
     {
+        if (!isConected) return;
         sliderValue = GetNormalizedPosition(transform.localPosition) * 100f;
         TubeRenderer.SetBlendShapeWeight(0, sliderValue);
 
