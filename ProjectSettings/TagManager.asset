@@ -8,6 +8,7 @@ TagManager:
   - Gancho
   - Suelo
   - Jeringa
+  - AmbuDetectable
   layers:
   - Default
   - TransparentFX
