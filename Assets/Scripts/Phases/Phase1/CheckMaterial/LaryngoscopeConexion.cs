@@ -9,12 +9,30 @@ public class LaryngoscopeConexion : MonoBehaviour
     private Transform nuevosCollidersGancho;
 
     [SerializeField] private GameObject laryngoscopeCameraCover;
+    [SerializeField] private Collider detectorCollider;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void ComprobarActivacionLaringoscopio(GameState state)
+    {
+        if (state == GameState.encenderLaringoscopio)
+        {
+            detectorCollider.enabled = true;
+        }
+        else
+        {
+            detectorCollider.enabled = false;
+        }
+    }
+
     void Start()
     {
+        GameManager.onGameStateChanged += ComprobarActivacionLaringoscopio;
         myCollider = GetComponent<Collider>();
         nuevosCollidersGancho = transform.Find("GanchoColliders");
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.onGameStateChanged -= ComprobarActivacionLaringoscopio;
     }
 
     void OnTriggerEnter(Collider other)
@@ -67,6 +85,7 @@ public class LaryngoscopeConexion : MonoBehaviour
             laryngoscopeCameraCover.SetActive(false);
             laryngoscopeLight.gameObject.SetActive(true);
 
+            GameManager.applicationController.updateGameState(GameState.inflarBalonTuboOrotraqueal);
         }
     }
 }

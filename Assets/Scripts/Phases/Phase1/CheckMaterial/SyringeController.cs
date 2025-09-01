@@ -14,10 +14,30 @@ public class SyringeController : MonoBehaviour
 
     [HideInInspector] public bool isConected = false;
 
+    private bool canMoveNextStep = false;
+
+    private void ComprobarActivacionGlobo(GameState state)
+    {
+        if (state == GameState.inflarBalonTuboOrotraqueal)
+        {
+            canMoveNextStep = true;
+        }
+        else
+        {
+            canMoveNextStep = false;
+        }
+    }
+
     void Start()
     {
+        GameManager.onGameStateChanged += ComprobarActivacionGlobo;
         minPosition = transform.localPosition;
         maxPosition = transform.localPosition - new Vector3(rangoMovimiento, 0f, 0f);
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.onGameStateChanged -= ComprobarActivacionGlobo;
     }
 
     public void OnControllerSelected() //Esto se llama desde el pointable unity event wrapper cuando se selecciona el objeto controlador
@@ -26,6 +46,10 @@ public class SyringeController : MonoBehaviour
         sliderValue = GetNormalizedPosition(transform.localPosition) * 100f;
         TubeRenderer.SetBlendShapeWeight(0, sliderValue);
 
+        if (canMoveNextStep && sliderValue >= 99f)
+        {
+            GameManager.applicationController.updateGameState(GameState.posicionarCabezaPaciente);
+        }
     }
 
     float GetNormalizedPosition(Vector3 currentPosition)

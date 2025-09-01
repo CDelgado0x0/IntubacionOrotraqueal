@@ -9,11 +9,31 @@ public class PatientAnimations : MonoBehaviour
     [SerializeField] private GameObject manosPosicionamiento;
     [SerializeField] private GameObject manosAbrirBoca;
     [SerializeField] private float delayBetweenAnimations = 2.0f;
+    [SerializeField] private Collider HeadCollider;
 
-    private void Start()
+    private void ComprobarActivacionPaciente(GameState state)
     {
+        if (state == GameState.posicionarCabezaPaciente || state == GameState.abrirBocaPaciente)
+        {
+            HeadCollider.enabled = true;
+        }
+        else
+        {
+            HeadCollider.enabled = false;
+        }
+    }
+
+    void Start()
+    {
+        GameManager.onGameStateChanged += ComprobarActivacionPaciente;
         manosPosicionamiento.SetActive(true);
         manosAbrirBoca.SetActive(false);
+        HeadCollider.enabled = false;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.onGameStateChanged -= ComprobarActivacionPaciente;
     }
 
     private enum PatientState
@@ -54,6 +74,9 @@ public class PatientAnimations : MonoBehaviour
                 manosAbrirBoca.SetActive(true);
 
                 animationCoroutine = null;
+
+                GameManager.applicationController.updateGameState(GameState.abrirBocaPaciente);
+
                 break;
 
             case PatientState.HeadMoved:
@@ -65,6 +88,9 @@ public class PatientAnimations : MonoBehaviour
                 manosAbrirBoca.SetActive(false);
 
                 animationCoroutine = null;
+
+                GameManager.applicationController.updateGameState(GameState.introducirCanulaGirada);
+
                 break;
             default:
                 animationCoroutine = null;
