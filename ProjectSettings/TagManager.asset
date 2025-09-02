@@ -9,6 +9,7 @@ TagManager:
   - Suelo
   - Jeringa
   - AmbuDetectable
+  - CanulaDetectable
   layers:
   - Default
   - TransparentFX
