@@ -10,7 +10,7 @@ public class SyringeController : MonoBehaviour
     [Range(0f, 100f)]
     public float sliderValue = 0f; // Resultado normalizado
 
-    [SerializeField] private SkinnedMeshRenderer TubeRenderer;
+    [SerializeField] private SkinnedMeshRenderer MytubeRenderer;
 
     [HideInInspector] public bool isConected = false;
 
@@ -44,7 +44,7 @@ public class SyringeController : MonoBehaviour
     {
         if (!isConected) return;
         sliderValue = GetNormalizedPosition(transform.localPosition) * 100f;
-        TubeRenderer.SetBlendShapeWeight(0, sliderValue);
+        MytubeRenderer.SetBlendShapeWeight(0, sliderValue);
 
         if (canMoveNextStep && sliderValue >= 99f)
         {
