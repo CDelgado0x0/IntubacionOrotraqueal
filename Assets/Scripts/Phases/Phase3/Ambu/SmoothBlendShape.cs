@@ -8,68 +8,133 @@ public class SmoothBlendShape : MonoBehaviour
 
     [Header("Configuración Blend Shape")]
     public int blendShapeIndex = 0;
-    public float transitionSpeed = 2.0f; // Velocidad de cambio
-
-    private float currentWeight = 0f;    // Peso actual de la shape key
-    private float targetWeight = 0f;     // Peso deseado
+    public float inflationDuration = 1f; // tiempo total de cada insuflación (s)
 
     [Header("Ritmo de insuflación")]
     public float minInterval = 4.5f;  // mínimo tiempo entre insuflaciones (s)
     public float maxInterval = 6.5f;  // máximo tiempo entre insuflaciones (s)
     public float requiredTime = 30f;  // tiempo total haciendo insuflaciones correctas
 
-    private float lastInflationTime = -10f;  // momento de la última insuflación
-    private float successTimer = 0f;         // tiempo acumulado correcto
+    private float currentWeight = 0f;    // Peso actual de la shape key
+
+    // Variables internas
+    private bool isInflating = false;
+    private bool isPressing = false;
+    private bool reachedPeak = false;
+    private float inflationTimer = 0f;
+
+    private bool isReturning = false;
+    private float returnDuration = 0f;
+    private float returnTimer = 0f;
+    private float startWeight = 0f;
+
+    private float lastInflationTime = -10f;
+    private float successTimer = 0f;
+
+    [SerializeField] private AudioSource respiracionCorrecta;
 
     void Update()
     {
-        if (Mathf.Abs(currentWeight - targetWeight) < 0.01f) return;
+        // Subida del blend shape mientras mantiene presionado
+        if (isInflating && isPressing)
+        {
+            inflationTimer += Time.deltaTime;
+            float t = Mathf.Clamp01(inflationTimer / (inflationDuration / 2f));
+            currentWeight = Mathf.Lerp(0f, 100f, t);
+            ApplyBlendShape();
 
-        // Interpolación suave hacia el valor objetivo
-        currentWeight = Mathf.Lerp(currentWeight, targetWeight, Time.deltaTime * transitionSpeed);
+            if (t >= 1f && !reachedPeak)
+            {
+                reachedPeak = true;
+                ValidateInflation();
+            }
+        }
 
+        // Bajada después de soltar (pico alcanzado o interrumpido)
+        if (isReturning)
+        {
+            returnTimer += Time.deltaTime;
+            float t = Mathf.Clamp01(returnTimer / returnDuration);
+            currentWeight = Mathf.Lerp(startWeight, 0f, t);
+            ApplyBlendShape();
+
+            if (t >= 1f)
+            {
+                isReturning = false;
+                currentWeight = 0f;
+            }
+        }
+    }
+
+    private void ApplyBlendShape()
+    {
         foreach (var renderer in meshRenderers)
         {
             if (renderer != null)
-            {
                 renderer.SetBlendShapeWeight(blendShapeIndex, currentWeight);
-            }
         }
-
     }
 
-    public void changeShape(bool isPress)
+    public void OnPress()
     {
-        if (isPress)
-        {
-            // Solo registramos la insuflación al apretar
-            float currentTime = Time.time;
+        isPressing = true;
 
-            if (lastInflationTime > 0)
+        if (!isInflating)
+        {
+            isInflating = true;
+            inflationTimer = 0f;
+            reachedPeak = false;
+        }
+    }
+
+    public void OnRelease()
+    {
+        isPressing = false;
+
+        if (currentWeight > 0f)
+        {
+            // Comenzar la bajada suave desde el punto actual
+            isReturning = true;
+            startWeight = currentWeight;
+
+            if (reachedPeak)
+                returnDuration = inflationDuration / 2f; // segunda mitad si alcanzó pico
+            else
+                returnDuration = (inflationDuration / 2f) * (currentWeight / 100f); // proporcional si interrumpido
+
+            returnTimer = 0f;
+        }
+
+        // Reiniciar variables de subida
+        isInflating = false;
+        inflationTimer = 0f;
+        reachedPeak = false;
+    }
+
+    private void ValidateInflation()
+    {
+        float currentTime = Time.time;
+
+        if (lastInflationTime > 0f)
+        {
+            float interval = currentTime - lastInflationTime;
+            if (interval >= minInterval && interval <= maxInterval)
             {
-                float interval = currentTime - lastInflationTime;
-                if (interval >= minInterval && interval <= maxInterval)
-                {
-                    successTimer += interval;
-                }
-                else
-                {
-                    successTimer = 0f;
-                }
+                successTimer += interval;
+                respiracionCorrecta.Play();
             }
+            else
+            {
+                successTimer = 0f;
+            }
+        }
 
-            lastInflationTime = currentTime;
-            targetWeight = 100f; // expandir Ambú
-        }
-        else
-        {
-            // Al soltar, solo contraemos el Ambú
-            targetWeight = 0f;
-        }
+        lastInflationTime = currentTime;
 
         if (successTimer >= requiredTime)
         {
             Debug.Log("¡Ganaste! RCP exitosa.");
+            // Aquí puedes agregar lógica adicional de victoria
         }
     }
 }
