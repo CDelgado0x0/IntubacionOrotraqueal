@@ -15,10 +15,12 @@ public class AmbuContraints : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             changeGrabMovement();
         }
+        */
     }
 
     public void changeGrabMovement()
