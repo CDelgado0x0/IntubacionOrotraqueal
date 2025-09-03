@@ -15,12 +15,17 @@ public class GameManager : MonoBehaviour
 
     public Texture[] Instrucciones;
 
+    [SerializeField] private GameObject pasosCanula;
+    [SerializeField] private GameObject pasoColocarPrimerAmbu;
+
     void Awake(){
         applicationController = this;
     }
 
     void Start(){
         updateGameState(GameState.menuPrincipal);
+        pasosCanula.SetActive(false);
+        pasoColocarPrimerAmbu.SetActive(false);
     }
 
     private void OnValidate() //Esto sirve para poder cambiar el estado desde el inspector, comentar si no es necesario.
@@ -29,6 +34,10 @@ public class GameManager : MonoBehaviour
     }
 
     public void updateGameState(GameState newState){
+
+        pasosCanula.SetActive(false);
+        pasoColocarPrimerAmbu.SetActive(false);
+
         state = newState;
 
         switch(newState){
@@ -53,6 +62,7 @@ public class GameManager : MonoBehaviour
                 LEDPantallas.SetTexture("_EmissionMap", Instrucciones[3]);
                 break;
                 case GameState.introducirCanulaGirada:
+                pasosCanula.SetActive(true);
                 LEDPantallas.SetTexture("_BaseMap", Instrucciones[4]);
                 LEDPantallas.SetTexture("_EmissionMap", Instrucciones[4]);
                 break;
@@ -61,6 +71,7 @@ public class GameManager : MonoBehaviour
                 LEDPantallas.SetTexture("_EmissionMap", Instrucciones[5]);
                 break;
                 case GameState.colocarAmbu:
+                pasoColocarPrimerAmbu.SetActive(true);
                 LEDPantallas.SetTexture("_BaseMap", Instrucciones[6]);
                 LEDPantallas.SetTexture("_EmissionMap", Instrucciones[6]);
                 break;
