@@ -3,7 +3,12 @@ guid: 85e42ed5762aa8d4e99f6c5c4e1fce79
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Manta
+    second: {fileID: 2100000, guid: c1f118b1efd7f544fa21ee41e9e089d9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
