@@ -13,16 +13,6 @@ public class AmbuContraints : MonoBehaviour
         ManosCompresor.SetActive(false);
     }
 
-    private void Update()
-    {
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            changeGrabMovement();
-        }
-        */
-    }
-
     public void changeGrabMovement()
     {
         ManosAmbu.SetActive(!ManosAmbu.activeSelf);

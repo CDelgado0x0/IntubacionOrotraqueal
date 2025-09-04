@@ -14,9 +14,6 @@ public class ControladorAnimacion : MonoBehaviour
 
     void Start()
     {
-        minPosition = transform.position;
-        maxPosition = transform.position - new Vector3(0f, rangoMovimiento, 0f);
-
         stateHash = animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
         animator.speed = 0;
         animator.Play(stateHash, 0, 0f);
@@ -25,8 +22,15 @@ public class ControladorAnimacion : MonoBehaviour
     public void OnControllerSelected() //Esto se llama desde el pointable unity event wrapper cuando se selecciona el objeto controlador
     {
         sliderValue = GetNormalizedPosition(transform.position);
+        Debug.Log("Controlador seleccionado:" + sliderValue);
         animator.Play(stateHash, 0, sliderValue);
         animator.Update(0);
+    }
+
+    public void setPositions()
+    {
+        minPosition = transform.position;
+        maxPosition = transform.position - new Vector3(0f, rangoMovimiento, 0f);
     }
 
     float GetNormalizedPosition(Vector3 currentPosition)
