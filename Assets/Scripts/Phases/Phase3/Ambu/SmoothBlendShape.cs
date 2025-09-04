@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class SmoothBlendShape : MonoBehaviour
 {
+
+    // Este script está diseñado especificamente para el control del ambú, existe un controlador de BlendShape general llamado GeneralBlendShape
+
     [Header("Lista de Skinned Meshes")]
     public List<SkinnedMeshRenderer> meshRenderers = new List<SkinnedMeshRenderer>();
 
@@ -32,6 +35,7 @@ public class SmoothBlendShape : MonoBehaviour
     private float successTimer = 0f;
 
     [SerializeField] private AudioSource respiracionCorrecta;
+    [SerializeField] private AmbuContraints Ambu;
 
     void Update()
     {
@@ -133,8 +137,8 @@ public class SmoothBlendShape : MonoBehaviour
 
         if (successTimer >= requiredTime)
         {
-            Debug.Log("¡Ganaste! RCP exitosa.");
-            // Aquí puedes agregar lógica adicional de victoria
+            Ambu.changeGrabMovement();
+            GameManager.applicationController.updateGameState(GameState.extraerAmbuYCanula);
         }
     }
 }

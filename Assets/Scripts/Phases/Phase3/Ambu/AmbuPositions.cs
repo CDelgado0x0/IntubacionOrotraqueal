@@ -15,10 +15,11 @@ public class AmbuPositions : MonoBehaviour
     {
         if (other.CompareTag("AmbuDetectable"))
         {
-            myRb.isKinematic = true;
             Ambu.changeGrabMovement();
+            myRb.isKinematic = true;
             transform.position = other.transform.position;
             transform.rotation = other.transform.rotation;
+            GameManager.applicationController.updateGameState(GameState.oxigenarPaciente);
         }
     }
 }

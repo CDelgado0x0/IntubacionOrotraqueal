@@ -85,6 +85,7 @@ public class CanulaBehaviour : MonoBehaviour
                 Manos.SetActive(false);
                 GameManager.applicationController.updateGameState(GameState.colocarAmbu);
                 limitedRotation = false;
+                myGrabs.BasicMovement();
             }
         }
 
