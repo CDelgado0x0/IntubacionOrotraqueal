@@ -115,6 +115,10 @@ public class GameManager : MonoBehaviour
                 LEDPantallas.SetTexture("_BaseMap", Instrucciones[16]);
                 LEDPantallas.SetTexture("_EmissionMap", Instrucciones[16]);
                 break;
+                case GameState.desacoplarMascarilla:
+                LEDPantallas.SetTexture("_BaseMap", Instrucciones[16]);
+                LEDPantallas.SetTexture("_EmissionMap", Instrucciones[16]);
+                break;
                 case GameState.asegurarTuboEnBoca:
                 LEDPantallas.SetTexture("_BaseMap", Instrucciones[17]);
                 LEDPantallas.SetTexture("_EmissionMap", Instrucciones[17]);
@@ -169,6 +173,7 @@ public enum GameState{
     conectarJeringa,
     inflarBalon,
     quitarJeringa,
+    desacoplarMascarilla,
     asegurarTuboEnBoca,
     AcoplarCapnogragoYAmbu,
     insuflar,
