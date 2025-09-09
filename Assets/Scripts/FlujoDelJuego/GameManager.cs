@@ -17,6 +17,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject pasosCanula;
     [SerializeField] private GameObject pasoColocarPrimerAmbu;
+    [SerializeField] private PatientAnimations controladorBoca;
+
+
+    [ContextMenu("Reproducir Animación Paciente")] //Dar click derecho al componente desde el inspector para ejecutarlo
+    public void EjecutarAnimacionPaciente()
+    {
+        StartCoroutine(controladorBoca.mouthController());
+    }
 
     void Awake(){
         applicationController = this;

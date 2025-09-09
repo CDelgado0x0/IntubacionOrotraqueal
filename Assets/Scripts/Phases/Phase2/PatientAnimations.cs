@@ -97,4 +97,14 @@ public class PatientAnimations : MonoBehaviour
                 break;
         }
     }
+
+    //Para poder abrir la boca desde el game manager
+    public IEnumerator mouthController()
+    {
+        // Ejecuta la primera animación (Mover cabeza)
+        yield return StartCoroutine(TrySetNextAnimation());
+
+        // Ejecuta la segunda animación (Abrir boca)
+        yield return StartCoroutine(TrySetNextAnimation());
+    }
 }
