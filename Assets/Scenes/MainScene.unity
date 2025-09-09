@@ -383,13 +383,13 @@ Transform:
   m_GameObject: {fileID: 12867947}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.001539, y: 0.2364, z: -0.30775}
+  m_LocalPosition: {x: 0.001539, y: 0.9874, z: -3.82975}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1955946847189898761}
   - {fileID: 5015896759175202357}
-  m_Father: {fileID: 7829733654071273738}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &21089553
 GameObject:
@@ -21609,7 +21609,6 @@ Transform:
   - {fileID: 3160080910550904073}
   - {fileID: 313806387}
   - {fileID: 1201411680}
-  - {fileID: 12867948}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7844354275242494022
@@ -22267,7 +22266,8 @@ MonoBehaviour:
   secondMovement: {fileID: 8676231476989915908}
   distanciaPrimerMovimiento: 0.068358
   distanciaSegundoMovimiento: 0.00542
-  animator: {fileID: 7665317712612036580}
+  laryngoscopeAnimator: {fileID: 7665317712612036580}
+  patientAnimator: {fileID: 49667278}
 --- !u!114 &8676231476989915908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22810,5 +22810,6 @@ SceneRoots:
   - {fileID: 520830029205348924}
   - {fileID: 1614300428}
   - {fileID: 7829733654071273738}
+  - {fileID: 12867948}
   - {fileID: 1097022197}
   - {fileID: 300547205}

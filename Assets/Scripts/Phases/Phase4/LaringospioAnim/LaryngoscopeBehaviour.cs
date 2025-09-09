@@ -29,7 +29,8 @@ public class LaryngoscopeBehaviour : MonoBehaviour
     [Range(0f, 1f)]
     private float NaturalRange = 0f;
 
-    public Animator animator;
+    public Animator laryngoscopeAnimator;
+    public Animator patientAnimator;
 
 
     void Start()
@@ -40,8 +41,8 @@ public class LaryngoscopeBehaviour : MonoBehaviour
         basicGrab?.Initialize(myGrab);
         secondMovement?.Initialize(myGrab);
 
-        animator.speed = 0;
-        animator.Play("PrimerMovimiento", 0, 0f);
+        laryngoscopeAnimator.speed = 0;
+        laryngoscopeAnimator.Play("PrimerMovimiento", 0, 0f);
     }
     
 
@@ -54,8 +55,11 @@ public class LaryngoscopeBehaviour : MonoBehaviour
             NaturalRange = GetNormalizedPosition(transform.localPosition);
             MovementRange = NaturalRange * 100f;
 
-            animator.Play("PrimerMovimiento", 0, NaturalRange);
-            animator.Update(0);
+            laryngoscopeAnimator.Play("PrimerMovimiento", 0, NaturalRange);
+            laryngoscopeAnimator.Update(0);
+
+            patientAnimator.Play("MoverLengua1", 0, NaturalRange);
+            patientAnimator.Update(0);
 
             if (MovementRange >= 99f)
             {
@@ -73,8 +77,11 @@ public class LaryngoscopeBehaviour : MonoBehaviour
             NaturalRange = GetNormalizedPosition(transform.localPosition);
             MovementRange = NaturalRange * 100f;
 
-            animator.Play("SegundoMovimiento", 0, NaturalRange);
-            animator.Update(0);
+            laryngoscopeAnimator.Play("SegundoMovimiento", 0, NaturalRange);
+            laryngoscopeAnimator.Update(0);
+
+            patientAnimator.Play("MoverLengua2", 0, NaturalRange);
+            patientAnimator.Update(0);
 
             if (MovementRange >= 99f)
             {
