@@ -53,7 +53,7 @@ public class LaryngoscopeBehaviour : MonoBehaviour
                 GameManager.applicationController.updateGameState(GameState.elevarLaringoscopio);
                 firstMovementActive = false;
                 SecondMovement();
-                secondMovementActive = false;
+                secondMovementActive = true;
                 minPosition = transform.localPosition;
                 maxPosition = transform.localPosition + new Vector3(0f, 0f, distanciaSegundoMovimiento);
             }
