@@ -7,7 +7,6 @@ public class LaryngoscopeBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject Manos;
     [SerializeField] private Grabbable myGrab;
-    [SerializeField] private ControladorAnimacion LaryngoscopeControlAnimation;
 
     [Header("Transformers")]
     [SerializeField] private GrabFreeTransformer basicGrab;
@@ -25,17 +24,24 @@ public class LaryngoscopeBehaviour : MonoBehaviour
     [SerializeField] private float distanciaSegundoMovimiento;
 
     [Range(0f, 100f)]
-    private float MovementRange = 0f;
+    public float MovementRange = 0f;
+
+    [Range(0f, 1f)]
+    public float NaturalRange = 0f;
+
+    public Animator animator;
 
 
     void Start()
     {
         minPosition = transform.localPosition;
-        maxPosition = transform.localPosition + new Vector3(0f, distanciaPrimerMovimiento, 0f);
+        maxPosition = transform.localPosition + new Vector3(0f, -distanciaPrimerMovimiento, 0f);
         firstMovementActive = true;
         basicGrab?.Initialize(myGrab);
         secondMovement?.Initialize(myGrab);
-        LaryngoscopeControlAnimation.setPositions();
+
+        animator.speed = 0;
+        animator.Play("PrimerMovimiento", 0, 0f);
     }
     
 
@@ -45,7 +51,11 @@ public class LaryngoscopeBehaviour : MonoBehaviour
 
         if (firstMovementActive)
         {
-            MovementRange = GetNormalizedPosition(transform.localPosition) * 100f;
+            NaturalRange = GetNormalizedPosition(transform.localPosition);
+            MovementRange = NaturalRange * 100f;
+
+            animator.Play("PrimerMovimiento", 0, NaturalRange);
+            animator.Update(0);
 
             if (MovementRange >= 99f)
             {
@@ -60,13 +70,17 @@ public class LaryngoscopeBehaviour : MonoBehaviour
         }
         else if (secondMovementActive)
         {
-            MovementRange = GetNormalizedPosition(transform.localPosition) * 100f;
+            NaturalRange = GetNormalizedPosition(transform.localPosition);
+            MovementRange = NaturalRange * 100f;
+
+            animator.Play("SegundoMovimiento", 0, NaturalRange);
+            animator.Update(0);
+
             if (MovementRange >= 99f)
             {
                 Manos.SetActive(false);
                 GameManager.applicationController.updateGameState(GameState.orientarTuboOrotraqueal);
                 secondMovementActive = false;
-                FreeMovement();
             }
         }
 

@@ -22,7 +22,6 @@ public class ControladorAnimacion : MonoBehaviour
     public void OnControllerSelected() //Esto se llama desde el pointable unity event wrapper cuando se selecciona el objeto controlador
     {
         sliderValue = GetNormalizedPosition(transform.position);
-        Debug.Log("Controlador seleccionado:" + sliderValue);
         animator.Play(stateHash, 0, sliderValue);
         animator.Update(0);
     }

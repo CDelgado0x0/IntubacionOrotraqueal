@@ -3,7 +3,47 @@ guid: c346da7bcb3a4af4db9b6dcf5b62cfa2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Boca
+    second: {fileID: 2100000, guid: e5a0f1b5de745134d884ad862b058192, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dientes
+    second: {fileID: 2100000, guid: 37985cacfeb3fad4993fdb2361bfd837, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Digestivesystem
+    second: {fileID: 2100000, guid: 8f9323366bc73614fbbc4996beba0934, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyelash
+    second: {fileID: 2100000, guid: cb17f67c18c3f164194f216fd0593c3f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HumanSkin
+    second: {fileID: 2100000, guid: cee182053575baa4a9486f2e0b1a1b25, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Humanlungs
+    second: {fileID: 2100000, guid: cc69258e1a84db848add115de5a83b8b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lengua
+    second: {fileID: 2100000, guid: 7057ccf0d46d3e34eb15b3fecbfb2a95, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paladar
+    second: {fileID: 2100000, guid: 8b6a262c54e8a0e4aae2b3d322aefdab, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
