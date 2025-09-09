@@ -24,10 +24,10 @@ public class LaryngoscopeBehaviour : MonoBehaviour
     [SerializeField] private float distanciaSegundoMovimiento;
 
     [Range(0f, 100f)]
-    public float MovementRange = 0f;
+    private float MovementRange = 0f;
 
     [Range(0f, 1f)]
-    public float NaturalRange = 0f;
+    private float NaturalRange = 0f;
 
     public Animator animator;
 
