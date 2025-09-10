@@ -4,30 +4,27 @@ using UnityEngine;
 
 public class ConexionOxigeno : MonoBehaviour
 {
-    private Grabbable myGrab;
+    [SerializeField] private GameObject Manos;
+
     private Rigidbody rb;
     private FixedJoint fixedJoint;
-    private bool done = false;
-
-    private bool ICanEnter = true;
+    private bool keepKinematicActive = false;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        myGrab = GetComponent<Grabbable>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.CompareTag("ConectorCateter") || other.CompareTag("Gancho")) && ICanEnter)
+        if ((other.CompareTag("OxyGate") || other.CompareTag("Support")))
         {
+
+            keepKinematicActive = true;
 
             if (fixedJoint != null) Destroy(fixedJoint);
 
-            myGrab.enabled = false;
-            StartCoroutine(EsperarUnSegundo());
-
-            ICanEnter = false;
+            StartCoroutine(ResetDeManos());
 
             // Opcional: bloquear rotación si quieres que no gire más
             rb.angularVelocity = Vector3.zero;
@@ -44,27 +41,25 @@ public class ConexionOxigeno : MonoBehaviour
             fixedJoint = gameObject.AddComponent<FixedJoint>();
             fixedJoint.connectedBody = other.attachedRigidbody;
 
-            done = false;
-
-            if (other.CompareTag("Gancho")) return;
-
-            GameManager.applicationController.updateGameState(GameState.conectarOxigeno);
+            if (other.CompareTag("OxyGate"))
+            {
+                GameManager.applicationController.updateGameState(GameState.conectarOxigeno);
+            }
         }
     }
 
-    public void isMoving()
+    public void grabConnector() //Se llama desde el event
     {
         if (fixedJoint != null)
         {
             Destroy(fixedJoint);
-            ICanEnter = true;
-
         }
     }
 
-    IEnumerator EsperarUnSegundo()
+    IEnumerator ResetDeManos()
     {
+        Manos.SetActive(false);
         yield return new WaitForSeconds(1f);
-        myGrab.enabled = true;
+        Manos.SetActive(true);
     }
 }

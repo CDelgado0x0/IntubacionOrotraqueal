@@ -11,6 +11,8 @@ TagManager:
   - AmbuDetectable
   - CanulaDetectable
   - OrotraquealDetectable
+  - OxyGate
+  - Support
   layers:
   - Default
   - TransparentFX
