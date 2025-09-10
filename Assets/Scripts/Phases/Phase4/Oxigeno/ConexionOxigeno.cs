@@ -7,8 +7,8 @@ public class ConexionOxigeno : MonoBehaviour
     [SerializeField] private GameObject Manos;
 
     private Rigidbody rb;
-    private FixedJoint fixedJoint;
     private bool keepKinematicActive = false;
+    private bool connectedToAmbu = false;
 
     private void Start()
     {
@@ -19,30 +19,19 @@ public class ConexionOxigeno : MonoBehaviour
     {
         if ((other.CompareTag("OxyGate") || other.CompareTag("Support")))
         {
-
             keepKinematicActive = true;
-
-            if (fixedJoint != null) Destroy(fixedJoint);
 
             StartCoroutine(ResetDeManos());
 
-            // Opcional: bloquear rotación si quieres que no gire más
-            rb.angularVelocity = Vector3.zero;
-            rb.linearVelocity = Vector3.zero;
-
             rb.isKinematic = true;
-            //Ubicarlo en la posicion del cateter
             transform.position = other.transform.position;
             transform.rotation = other.transform.rotation;
-            rb.isKinematic = false;
 
-
-            // Crear joint fijo entre este objeto y el conector
-            fixedJoint = gameObject.AddComponent<FixedJoint>();
-            fixedJoint.connectedBody = other.attachedRigidbody;
 
             if (other.CompareTag("OxyGate"))
             {
+                connectedToAmbu = true;
+                transform.SetParent(other.transform);
                 GameManager.applicationController.updateGameState(GameState.conectarOxigeno);
             }
         }
@@ -50,16 +39,21 @@ public class ConexionOxigeno : MonoBehaviour
 
     public void grabConnector() //Se llama desde el event
     {
-        if (fixedJoint != null)
+        keepKinematicActive = false;
+    }
+
+    public void releaseConnector() //Se llama desde el event
+    {
+        if (!keepKinematicActive)
         {
-            Destroy(fixedJoint);
+            rb.isKinematic = false;
         }
     }
 
     IEnumerator ResetDeManos()
     {
         Manos.SetActive(false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Manos.SetActive(true);
     }
 }
