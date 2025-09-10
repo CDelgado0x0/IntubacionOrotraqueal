@@ -15,7 +15,6 @@ public class DistanciaMaxima : MonoBehaviour
 
     public void ComprobarDistancia()
     {
-        Debug.Log("Comprobando distancia...");
         // Medir la distancia entre los dos objetos
         float distance = Vector3.Distance(transform.position, connectedObject.position);
 
