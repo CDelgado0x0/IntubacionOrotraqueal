@@ -7529,6 +7529,37 @@ SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 194131197332454239, guid: c346da7bcb3a4af4db9b6dcf5b62cfa2, type: 3}
   m_PrefabInstance: {fileID: 49667275}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &61015259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 61015260}
+  m_Layer: 0
+  m_Name: OxygenGate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &61015260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61015259}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.32148, y: 0.0367, z: 0.0121}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1326708927}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &85701831
 GameObject:
   m_ObjectHideFlags: 0
@@ -13036,7 +13067,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.133, y: 0, z: -3.926}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 258890307}
@@ -13063,8 +13094,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 1.4559655, z: 0.3}
-  m_Center: {x: 0, y: 0.7461288, z: 0}
+  m_Size: {x: 0.15, y: 0.7218007, z: 0.15}
+  m_Center: {x: 0, y: 0.37904638, z: 0}
 --- !u!1 &1267656203
 GameObject:
   m_ObjectHideFlags: 0
@@ -21135,6 +21166,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5473256767282495363, guid: b83828cc3e616c748a38317d31420207, type: 3}
       insertIndex: 2
       addedObject: {fileID: 38294391}
+    - targetCorrespondingSourceObject: {fileID: 5473256767282495363, guid: b83828cc3e616c748a38317d31420207, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 61015260}
     - targetCorrespondingSourceObject: {fileID: 6870257006894632052, guid: b83828cc3e616c748a38317d31420207, type: 3}
       insertIndex: -1
       addedObject: {fileID: 890009514}
@@ -44857,7 +44891,7 @@ Transform:
   m_GameObject: {fileID: 2137978969502335574}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.255, y: 0.177, z: -0}
+  m_LocalPosition: {x: 0.2451, y: 0.177, z: -0}
   m_LocalScale: {x: 0.08000001, y: 0.029999996, z: 0.029999996}
   m_ConstrainProportionsScale: 0
   m_Children:
