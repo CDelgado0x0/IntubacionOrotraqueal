@@ -4,21 +4,36 @@ using UnityEngine;
 
 public class ConexionOxigeno : MonoBehaviour
 {
+    [SerializeField] private Transform connectedObject;
+    [SerializeField] private float maxDistance;
     [SerializeField] private GameObject Manos;
+    [SerializeField] private GameObject initialPosition;
 
     private Rigidbody rb;
     private bool keepKinematicActive = false;
-    private bool connectedToAmbu = false;
+    private bool ambuConnected = false;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        transform.position = initialPosition.transform.position;
+        transform.rotation = initialPosition.transform.rotation;
+
+    }
+
+    private void Update()
+    {
+        if (ambuConnected)
+        {
+            ComprobarDistancia();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if ((other.CompareTag("OxyGate") || other.CompareTag("Support")))
         {
+            if (ambuConnected) return;
             keepKinematicActive = true;
 
             StartCoroutine(ResetDeManos());
@@ -30,10 +45,22 @@ public class ConexionOxigeno : MonoBehaviour
 
             if (other.CompareTag("OxyGate"))
             {
-                connectedToAmbu = true;
+                ambuConnected = true;
                 transform.SetParent(other.transform);
                 GameManager.applicationController.updateGameState(GameState.conectarOxigeno);
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Suelo"))
+        {
+            if (ambuConnected) DesacoplarCable();
+
+            rb.isKinematic = true;
+            transform.position = initialPosition.transform.position;
+            transform.rotation = initialPosition.transform.rotation;
         }
     }
 
@@ -46,8 +73,28 @@ public class ConexionOxigeno : MonoBehaviour
     {
         if (!keepKinematicActive)
         {
+            ambuConnected = false;
             rb.isKinematic = false;
+            transform.SetParent(null);
         }
+    }
+
+    public void ComprobarDistancia()
+    {
+        float distance = Vector3.Distance(transform.position, connectedObject.position);
+
+        if (distance > maxDistance)
+        {
+            DesacoplarCable();
+        }
+    }
+
+    private void DesacoplarCable()
+    {
+        ambuConnected = false;
+        rb.isKinematic = false;
+        transform.SetParent(null);
+        StartCoroutine(ResetDeManos());
     }
 
     IEnumerator ResetDeManos()
