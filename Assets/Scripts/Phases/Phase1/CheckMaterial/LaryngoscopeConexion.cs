@@ -1,5 +1,6 @@
 using Oculus.Interaction;
 using System.Collections;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class LaryngoscopeConexion : MonoBehaviour
@@ -9,6 +10,7 @@ public class LaryngoscopeConexion : MonoBehaviour
     private Transform nuevosCollidersGancho;
 
     [SerializeField] private GameObject laryngoscopeCameraCover;
+    [SerializeField] private GameObject completeLaryngoscope;
     [SerializeField] private Collider detectorCollider;
     [SerializeField] private Collider ganchoCollider;
 
@@ -29,6 +31,7 @@ public class LaryngoscopeConexion : MonoBehaviour
         GameManager.onGameStateChanged += ComprobarActivacionLaringoscopio;
         myCollider = GetComponent<Collider>();
         nuevosCollidersGancho = transform.Find("GanchoColliders");
+        completeLaryngoscope.SetActive(false);
     }
 
     private void OnDestroy()
@@ -38,7 +41,7 @@ public class LaryngoscopeConexion : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Gancho"))
+        if (other.CompareTag("Gancho") && detectorCollider)
         {
 
             manosGancho = other.transform.Find("HandGrab");
@@ -64,6 +67,11 @@ public class LaryngoscopeConexion : MonoBehaviour
             laryngoscopeLight.gameObject.SetActive(true);
 
             GameManager.applicationController.updateGameState(GameState.inflarBalonTuboOrotraqueal);
+        }
+        else if (other.CompareTag("LaryngoscopeDetectable"))
+        {
+            gameObject.SetActive(false);
+            completeLaryngoscope.SetActive(true);
         }
     }
     
