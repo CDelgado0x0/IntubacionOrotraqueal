@@ -7,12 +7,12 @@ TagManager:
   - SamplesInfoPanel
   - Gancho
   - Suelo
-  - Jeringa
   - AmbuDetectable
   - CanulaDetectable
   - OrotraquealDetectable
   - OxyGate
   - Support
+  - SyringeGate
   layers:
   - Default
   - TransparentFX

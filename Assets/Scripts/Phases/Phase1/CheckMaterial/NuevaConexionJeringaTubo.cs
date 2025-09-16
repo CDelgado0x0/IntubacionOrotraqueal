@@ -1,28 +1,29 @@
-using Oculus.Interaction;
 using System.Collections;
 using UnityEngine;
 
-public class ConexionOxigeno : MonoBehaviour
+public class NuevaConexionJeringaTubo : MonoBehaviour
 {
     [SerializeField] private Transform connectedObject;
+    [SerializeField] private Transform centralPoint; //Punto desde el cual se mide la distancia
     [SerializeField] private float maxDistance;
     [SerializeField] private GameObject Manos;
-    [SerializeField] private GameObject initialPosition;
+    [SerializeField] private SyringeController syringeBehaviour;
 
     private Rigidbody rb;
     private bool keepKinematicActive = false;
-    private bool ambuConnected = false;
+    private bool syringeConnected = false;
+    private Transform myRealParent;
+    private bool canTrigger = true; // Evita múltiples triggers rápidos al tratar de soltar la jeringa por distancia
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        transform.SetPositionAndRotation(initialPosition.transform.position, initialPosition.transform.rotation);
-
+        myRealParent = transform.parent;
     }
 
     private void Update()
     {
-        if (ambuConnected)
+        if (syringeConnected)
         {
             ComprobarDistancia();
         }
@@ -30,9 +31,11 @@ public class ConexionOxigeno : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.CompareTag("OxyGate") || other.CompareTag("Support")))
+        if (other.CompareTag("SyringeGate") && canTrigger)
         {
-            if (ambuConnected) return;
+            syringeBehaviour.isConected = true;
+            canTrigger = false;
+
             keepKinematicActive = true;
 
             StartCoroutine(ResetDeManos());
@@ -40,24 +43,8 @@ public class ConexionOxigeno : MonoBehaviour
             rb.isKinematic = true;
             transform.SetPositionAndRotation(other.transform.position, other.transform.rotation);
 
-
-            if (other.CompareTag("OxyGate"))
-            {
-                ambuConnected = true;
-                transform.SetParent(other.transform);
-                GameManager.applicationController.updateGameState(GameState.conectarOxigeno);
-            }
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Suelo"))
-        {
-            if (ambuConnected) DesacoplarCable();
-
-            rb.isKinematic = true;
-            transform.SetPositionAndRotation(initialPosition.transform.position, initialPosition.transform.rotation);
+            syringeConnected = true;
+            transform.SetParent(other.transform);
         }
     }
 
@@ -70,15 +57,18 @@ public class ConexionOxigeno : MonoBehaviour
     {
         if (!keepKinematicActive)
         {
-            ambuConnected = false;
+            syringeBehaviour.isConected = false;
+            syringeConnected = false;
             rb.isKinematic = false;
-            transform.SetParent(null);
+            transform.SetParent(myRealParent);
         }
     }
 
     public void ComprobarDistancia()
     {
-        float distance = Vector3.Distance(transform.position, connectedObject.position);
+        float distance = Vector3.Distance(centralPoint.position, connectedObject.position);
+
+        
 
         if (distance > maxDistance)
         {
@@ -88,9 +78,10 @@ public class ConexionOxigeno : MonoBehaviour
 
     private void DesacoplarCable()
     {
-        ambuConnected = false;
+        syringeConnected = false;
+        syringeBehaviour.isConected = false;
         rb.isKinematic = false;
-        transform.SetParent(null);
+        transform.SetParent(myRealParent);
         StartCoroutine(ResetDeManos());
     }
 
@@ -99,5 +90,6 @@ public class ConexionOxigeno : MonoBehaviour
         Manos.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         Manos.SetActive(true);
+        canTrigger = true;
     }
 }
