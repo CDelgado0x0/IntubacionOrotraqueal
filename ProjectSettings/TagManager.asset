@@ -13,6 +13,7 @@ TagManager:
   - OxyGate
   - Support
   - SyringeGate
+  - LaryngoscopeDetectable
   layers:
   - Default
   - TransparentFX

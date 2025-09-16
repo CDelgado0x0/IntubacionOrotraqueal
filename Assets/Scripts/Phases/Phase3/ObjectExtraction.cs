@@ -8,6 +8,9 @@ public class ObjectExtraction : MonoBehaviour
     private Rigidbody myRb;
     private bool activeScript = false;
 
+    private bool ambuReleased = false;
+    private bool canulaReleased = false;
+
     private void ExtraerCanulaYAmbu(GameState state)
     {
         if (state == GameState.extraerAmbuYCanula)
@@ -44,6 +47,8 @@ public class ObjectExtraction : MonoBehaviour
         if (activeScript)
         {
             myRb.isKinematic = false;
+            ambuReleased = true;
+            BothReleased();
         }
     }
 
@@ -52,6 +57,15 @@ public class ObjectExtraction : MonoBehaviour
         if (activeScript)
         {
             canulaRb.isKinematic = false;
+            canulaReleased = true;
+            BothReleased();
+        }
+    }
+
+    private void BothReleased()
+    {
+        if (ambuReleased && canulaReleased)
+        {
             GameManager.applicationController.updateGameState(GameState.introducirLaringoscopio);
         }
     }

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject pasosCanula;
     [SerializeField] private GameObject pasoColocarPrimerAmbu;
+    [SerializeField] private GameObject pasoInsertarTubo;
     [SerializeField] private PatientAnimations controladorBoca;
 
 
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
         updateGameState(GameState.menuPrincipal);
         pasosCanula.SetActive(false);
         pasoColocarPrimerAmbu.SetActive(false);
+        pasoInsertarTubo.SetActive(false);
     }
 
     private void OnValidate() //Esto sirve para poder cambiar el estado desde el inspector, comentar si no es necesario.
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
 
         pasosCanula.SetActive(false);
         pasoColocarPrimerAmbu.SetActive(false);
+        pasoInsertarTubo.SetActive(false);
 
         state = newState;
 
@@ -104,6 +107,7 @@ public class GameManager : MonoBehaviour
                 LEDPantallas.SetTexture("_EmissionMap", Instrucciones[11]);
                 break;
                 case GameState.introducirTuboOrotraqueal:
+                pasoInsertarTubo.SetActive(true);
                 LEDPantallas.SetTexture("_BaseMap", Instrucciones[12]);
                 LEDPantallas.SetTexture("_EmissionMap", Instrucciones[12]);
                 break;
