@@ -8,21 +8,24 @@ public class LaryngoscopeConexion : MonoBehaviour
     private Collider myCollider;
     private Transform manosGancho;
     private Transform nuevosCollidersGancho;
+    private bool activeScript;
 
     [SerializeField] private GameObject laryngoscopeCameraCover;
-    [SerializeField] private GameObject completeLaryngoscope;
-    [SerializeField] private Collider detectorCollider;
+    [SerializeField] private GameObject completeLaryngoscopeVisual;
+    [SerializeField] private GameObject completeLaryngoscopeHands;
+    [SerializeField] private GameObject firstPhaseCanvas;
+    [SerializeField] private GameObject secondPhaseCanvas;
     [SerializeField] private Collider ganchoCollider;
 
     private void ComprobarActivacionLaringoscopio(GameState state)
     {
-        if (state == GameState.encenderLaringoscopio)
+        if (state == GameState.encenderLaringoscopio || state == GameState.introducirLaringoscopio)
         {
-            detectorCollider.enabled = true;
+            activeScript = true;
         }
         else
         {
-            detectorCollider.enabled = false;
+            activeScript = false;
         }
     }
 
@@ -31,7 +34,10 @@ public class LaryngoscopeConexion : MonoBehaviour
         GameManager.onGameStateChanged += ComprobarActivacionLaringoscopio;
         myCollider = GetComponent<Collider>();
         nuevosCollidersGancho = transform.Find("GanchoColliders");
-        completeLaryngoscope.SetActive(false);
+        completeLaryngoscopeVisual.SetActive(false);
+        completeLaryngoscopeHands.SetActive(false);
+        firstPhaseCanvas.SetActive(true);
+        secondPhaseCanvas.SetActive(false);
     }
 
     private void OnDestroy()
@@ -41,9 +47,10 @@ public class LaryngoscopeConexion : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Gancho") && detectorCollider)
-        {
+        if (!activeScript) return;
 
+        if (other.CompareTag("Gancho"))
+        {
             manosGancho = other.transform.Find("HandGrab");
             Transform ganchoColliders = other.transform.Find("Colliders");
             Transform laryngoscopeLight = other.transform.Find("Light");
@@ -70,8 +77,11 @@ public class LaryngoscopeConexion : MonoBehaviour
         }
         else if (other.CompareTag("LaryngoscopeDetectable"))
         {
+            completeLaryngoscopeVisual.SetActive(true);
+            completeLaryngoscopeHands.SetActive(true);
+            firstPhaseCanvas.SetActive(false);
+            secondPhaseCanvas.SetActive(true);
             gameObject.SetActive(false);
-            completeLaryngoscope.SetActive(true);
         }
     }
     
