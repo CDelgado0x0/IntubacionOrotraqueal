@@ -86,7 +86,7 @@ public class LaryngoscopeBehaviour : MonoBehaviour
             if (MovementRange >= 99f)
             {
                 Manos.SetActive(false);
-                GameManager.applicationController.updateGameState(GameState.orientarTuboOrotraqueal);
+                GameManager.applicationController.updateGameState(GameState.introducirTuboOrotraqueal);
                 secondMovementActive = false;
             }
         }

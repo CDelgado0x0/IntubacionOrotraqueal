@@ -12,16 +12,16 @@ public class GameManager : MonoBehaviour
 
     public Material LEDPantallas;
 
+    [SerializeField] private GameObject pasosCanula;
+    [SerializeField] private GameObject pasoColocarPrimerAmbu;
+    [SerializeField] private GameObject pasoInsertarTubo;
+    [SerializeField] private PatientAnimations controladorBoca;
+
     [Header("Spanish Textures")]
     [SerializeField] private Texture[] instruccionesES;
 
     [Header("English Textures")]
     [SerializeField] private Texture[] instruccionesEN;
-
-    [SerializeField] private GameObject pasosCanula;
-    [SerializeField] private GameObject pasoColocarPrimerAmbu;
-    [SerializeField] private GameObject pasoInsertarTubo;
-    [SerializeField] private PatientAnimations controladorBoca;
 
     private Dictionary<Language, Texture[]> instruccionesPorIdioma;
     private Language idiomaActual = Language.Spanish;
@@ -37,11 +37,6 @@ public class GameManager : MonoBehaviour
 
         applicationController = this;
 
-        instruccionesPorIdioma = new Dictionary<Language, Texture[]>
-        {
-            { Language.Spanish, instruccionesES },
-            { Language.English, instruccionesEN }
-        };
     }
 
     void Start(){
@@ -53,6 +48,15 @@ public class GameManager : MonoBehaviour
 
     private void OnValidate() //Esto sirve para poder cambiar el estado desde el inspector, comentar si no es necesario.
     {
+        if (instruccionesPorIdioma == null)
+        {
+            instruccionesPorIdioma = new Dictionary<Language, Texture[]>
+            {
+                { Language.Spanish, instruccionesES },
+                { Language.English, instruccionesEN }
+            };
+        }
+
         updateGameState(state);
     }
 
