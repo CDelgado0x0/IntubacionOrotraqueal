@@ -15,6 +15,7 @@ public class LaryngoscopeBehaviour : MonoBehaviour
 
     private bool firstMovementActive = false;
     private bool secondMovementActive = false;
+    private bool stopAnimatorSpeed = false; //Booleano que marca cuando el animator del paciente debe detenerse, esto se hace asi porque es necesario que las animaciones de mover cabeza sean instantaneas, pero estas sean controladas
 
     //Estos son valores necesarios para la restricción de movimiento
     private Vector3 minPosition;
@@ -49,6 +50,11 @@ public class LaryngoscopeBehaviour : MonoBehaviour
     public void OnControllerSelected() //Esto se llama desde el pointable unity event wrapper cuando se selecciona el objeto controlador
     {
         if (!firstMovementActive && !secondMovementActive) return;
+
+        if (!stopAnimatorSpeed)
+        {
+            patientAnimator.speed = 0;
+        }
 
         if (firstMovementActive)
         {
