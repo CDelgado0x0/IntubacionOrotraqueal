@@ -1,5 +1,6 @@
 using Oculus.Interaction;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
@@ -27,6 +28,7 @@ public class LaryngoscopeBehaviour : MonoBehaviour
 
     private bool firstMovementActive = false;
     private bool secondMovementActive = false;
+    private bool firstTimeReleasing = true;
 
     //Estos son valores necesarios para la restricción de movimiento
     private Vector3 minPosition;
@@ -145,7 +147,11 @@ public class LaryngoscopeBehaviour : MonoBehaviour
 
     public void DisableKinematicsOnRelease()
     {
-        rbParent.isKinematic = false;
-
+        if (firstTimeReleasing)
+        {
+            firstTimeReleasing = false;
+            rbParent.isKinematic = false;
+            GameManager.applicationController.updateGameState(GameState.conectarJeringa);
+        }
     }
 }

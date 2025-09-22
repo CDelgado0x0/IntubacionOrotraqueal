@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pasosCanula;
     [SerializeField] private GameObject pasoColocarPrimerAmbu;
     [SerializeField] private GameObject pasoInsertarTubo;
+    [SerializeField] private GameObject pasoInsertarLaringo;
     [SerializeField] private PatientAnimations controladorBoca;
 
     [Header("Spanish Textures")]
@@ -71,6 +72,7 @@ public class GameManager : MonoBehaviour
         pasosCanula.SetActive(false);
         pasoColocarPrimerAmbu.SetActive(false);
         pasoInsertarTubo.SetActive(false);
+        pasoInsertarLaringo.SetActive(false);
 
         state = newState;
 
@@ -119,6 +121,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.introducirLaringoscopio:
+                pasoInsertarLaringo.SetActive(true);
                 SetPantalla(9);
                 break;
 
