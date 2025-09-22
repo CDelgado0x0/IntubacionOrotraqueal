@@ -5,7 +5,11 @@ using static UnityEditor.PlayerSettings;
 
 public class LaryngoscopeBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject Manos;
+    [Header("References")]
+    [SerializeField] private GameObject myHands;
+    [SerializeField] private GameObject rootHands;
+    [SerializeField] private GameObject myCollider;
+    [SerializeField] private Rigidbody rbParent;
     [SerializeField] private Grabbable myGrab;
 
     [Header("Transformers")]
@@ -13,122 +17,135 @@ public class LaryngoscopeBehaviour : MonoBehaviour
     [SerializeField] private GrabFreeTransformer firstMovement;
     [SerializeField] private GrabFreeTransformer secondMovement;
 
+    [Header("Animators")]
+    public Animator laryngoscopeAnimator;
+    public Animator patientAnimator;
+
+    [Header("MovementDistances")]
+    [SerializeField] private float distanciaPrimerMovimiento;
+    [SerializeField] private float distanciaSegundoMovimiento;
+
     private bool firstMovementActive = false;
     private bool secondMovementActive = false;
-    private bool stopAnimatorSpeed = false; //Booleano que marca cuando el animator del paciente debe detenerse, esto se hace asi porque es necesario que las animaciones de mover cabeza sean instantaneas, pero estas sean controladas
 
     //Estos son valores necesarios para la restricción de movimiento
     private Vector3 minPosition;
     private Vector3 maxPosition;
 
-    [SerializeField] private float distanciaPrimerMovimiento;
-    [SerializeField] private float distanciaSegundoMovimiento;
+    private void ComprobarActivacionManos(GameState state)
+    {
+        if (state== GameState.introducirLaringoscopio)
+        {
+            firstMovementActive = true;
+        }
+        else if (state == GameState.sacarLaringoscopio)
+        {
+            rootHands.SetActive(true);
+        }
+    }
 
-    [Range(0f, 100f)]
-    private float MovementRange = 0f;
-
-    [Range(0f, 1f)]
-    private float NaturalRange = 0f;
-
-    public Animator laryngoscopeAnimator;
-    public Animator patientAnimator;
-
+    private void OnDestroy()
+    {
+        GameManager.onGameStateChanged -= ComprobarActivacionManos;
+    }
 
     void Start()
     {
+        GameManager.onGameStateChanged += ComprobarActivacionManos;
+
         minPosition = transform.localPosition;
         maxPosition = transform.localPosition + new Vector3(0f, -distanciaPrimerMovimiento, 0f);
-        firstMovementActive = true;
+
         basicGrab?.Initialize(myGrab);
         secondMovement?.Initialize(myGrab);
 
         laryngoscopeAnimator.speed = 0;
         laryngoscopeAnimator.Play("PrimerMovimiento", 0, 0f);
-    }
-    
 
-    public void OnControllerSelected() //Esto se llama desde el pointable unity event wrapper cuando se selecciona el objeto controlador
+        rootHands.SetActive(false);
+    }
+
+    public void OnControllerSelected()
     {
         if (!firstMovementActive && !secondMovementActive) return;
 
-        if (!stopAnimatorSpeed)
-        {
-            patientAnimator.speed = 0;
-        }
+        // Detiene animador del paciente al comenzar
+        patientAnimator.speed = 0;
 
         if (firstMovementActive)
-        {
-            NaturalRange = GetNormalizedPosition(transform.localPosition);
-            MovementRange = NaturalRange * 100f;
-
-            laryngoscopeAnimator.Play("PrimerMovimiento", 0, NaturalRange);
-            laryngoscopeAnimator.Update(0);
-
-            patientAnimator.Play("MoverLengua1", 0, NaturalRange);
-            patientAnimator.Update(0);
-
-            if (MovementRange >= 99f)
-            {
-                StartCoroutine(HandsChange());
-                GameManager.applicationController.updateGameState(GameState.elevarLaringoscopio);
-                firstMovementActive = false;
-                SecondMovement();
-                secondMovementActive = true;
-                minPosition = transform.localPosition;
-                maxPosition = transform.localPosition + new Vector3(0f, 0f, distanciaSegundoMovimiento);
-            }
-        }
+            HandleMovement("PrimerMovimiento", "MoverLengua1", GameState.elevarLaringoscopio, true);
         else if (secondMovementActive)
-        {
-            NaturalRange = GetNormalizedPosition(transform.localPosition);
-            MovementRange = NaturalRange * 100f;
-
-            laryngoscopeAnimator.Play("SegundoMovimiento", 0, NaturalRange);
-            laryngoscopeAnimator.Update(0);
-
-            patientAnimator.Play("MoverLengua2", 0, NaturalRange);
-            patientAnimator.Update(0);
-
-            if (MovementRange >= 99f)
-            {
-                Manos.SetActive(false);
-                GameManager.applicationController.updateGameState(GameState.introducirTuboOrotraqueal);
-                secondMovementActive = false;
-            }
-        }
-
+            HandleMovement("SegundoMovimiento", "MoverLengua2", GameState.introducirTuboOrotraqueal, false);
     }
 
-    float GetNormalizedPosition(Vector3 currentPosition)
+    private void HandleMovement(string scopeAnim, string patientAnim, GameState nextState, bool isFirst)
+    {
+        float naturalRange = GetNormalizedPosition(transform.localPosition);
+        float movementRange = naturalRange * 100f;
+
+        // Actualizar animaciones
+        UpdateAnimator(laryngoscopeAnimator, scopeAnim, naturalRange);
+        UpdateAnimator(patientAnimator, patientAnim, naturalRange);
+
+        // Cambio de estado al completar movimiento
+        if (movementRange >= 99f)
+        {
+            if (isFirst)
+            {
+                StartCoroutine(ChangeHands());
+                GameManager.applicationController.updateGameState(nextState);
+
+                firstMovementActive = false;
+                secondMovementActive = true;
+
+                minPosition = transform.localPosition;
+                maxPosition = transform.localPosition + new Vector3(0f, 0f, distanciaSegundoMovimiento);
+
+                SetGrabTransformer(secondMovement);
+            }
+            else
+            {
+                myHands.SetActive(false);
+                myCollider.SetActive(false);
+
+                GameManager.applicationController.updateGameState(nextState);
+                secondMovementActive = false;
+
+                SetGrabTransformer(basicGrab); // movimiento libre
+            }
+        }
+    }
+
+    private void UpdateAnimator(Animator animator, string clipName, float normalizedTime)
+    {
+        animator.Play(clipName, 0, normalizedTime);
+        animator.Update(0);
+    }
+
+    private float GetNormalizedPosition(Vector3 currentPosition)
     {
         Vector3 direction = maxPosition - minPosition;
         Vector3 relativePosition = currentPosition - minPosition;
         float projected = Vector3.Dot(relativePosition, direction.normalized);
-        float totalDistance = direction.magnitude;
-        return Mathf.Clamp01(projected / totalDistance);
+        return Mathf.Clamp01(projected / direction.magnitude);
     }
 
-    private IEnumerator HandsChange()
+    private IEnumerator ChangeHands()
     {
-        Manos.SetActive(false);
+        myHands.SetActive(false);
         yield return new WaitForSeconds(1f);
-        Manos.SetActive(true);
+        myHands.SetActive(true);
     }
 
-    private void FreeMovement()
+    private void SetGrabTransformer(GrabFreeTransformer transformer)
     {
-        basicGrab?.Initialize(myGrab);
-        myGrab.InjectOptionalOneGrabTransformer(basicGrab);
+        transformer?.Initialize(myGrab);
+        myGrab.InjectOptionalOneGrabTransformer(transformer);
     }
 
-    private void FirstMovement()
+    public void DisableKinematicsOnRelease()
     {
-        myGrab.InjectOptionalOneGrabTransformer(firstMovement);
-    }
+        rbParent.isKinematic = false;
 
-    private void SecondMovement()
-    {
-        secondMovement?.Initialize(myGrab);
-        myGrab.InjectOptionalOneGrabTransformer(secondMovement);
     }
 }
