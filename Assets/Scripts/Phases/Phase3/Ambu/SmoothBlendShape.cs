@@ -37,6 +37,34 @@ public class SmoothBlendShape : MonoBehaviour
     [SerializeField] private AudioSource respiracionCorrecta;
     [SerializeField] private AmbuContraints Ambu;
 
+    private bool primerUso = false;
+    private bool segundoUso = false;
+
+    private void ComprobarPasos(GameState state)
+    {
+        primerUso = false;
+        segundoUso = false;
+
+        if (state == GameState.oxigenarPaciente)
+        {
+            primerUso = true;
+        }
+        else if (state == GameState.insuflarRealizandoAuscultacion)
+        {
+            segundoUso = true;
+        }
+    }
+
+    void Start()
+    {
+        GameManager.onGameStateChanged += ComprobarPasos;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.onGameStateChanged -= ComprobarPasos;
+    }
+
     void Update()
     {
         // Subida del blend shape mientras mantiene presionado
@@ -137,8 +165,18 @@ public class SmoothBlendShape : MonoBehaviour
 
         if (successTimer >= requiredTime)
         {
-            Ambu.changeGrabMovement();
-            GameManager.applicationController.updateGameState(GameState.extraerAmbuYCanula);
+            if (primerUso) {
+
+                Ambu.AmbuMovement();
+                GameManager.applicationController.updateGameState(GameState.extraerAmbuYCanula);
+                successTimer = 0f;
+
+            }
+            else if (segundoUso)
+            {
+                GameManager.applicationController.updateGameState(GameState.asegurarTuboEnBoca);
+            }
+            
         }
     }
 }

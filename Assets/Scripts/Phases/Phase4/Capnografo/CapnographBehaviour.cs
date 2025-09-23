@@ -3,6 +3,7 @@ using UnityEngine;
 public class CapnographBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject CapnographHands;
+    [SerializeField] private AmbuPositions ambuController;
 
     private Rigidbody myRb;
 
@@ -19,6 +20,7 @@ public class CapnographBehaviour : MonoBehaviour
             myRb.isKinematic = true;
             transform.position = other.transform.position;
             transform.rotation = other.transform.rotation;
+            ambuController.capnographConnected = true;
         }
     }
 }

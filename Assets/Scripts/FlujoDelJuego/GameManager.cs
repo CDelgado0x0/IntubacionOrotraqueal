@@ -180,12 +180,8 @@ public class GameManager : MonoBehaviour
                 SetPantalla(18);
                 break;
 
-            case GameState.insuflar:
+            case GameState.insuflarRealizandoAuscultacion:
                 SetPantalla(19);
-                break;
-
-            case GameState.RealizarAuscultacion:
-                SetPantalla(20);
                 break;
 
             case GameState.asegurarTuboEnBoca:
@@ -241,8 +237,7 @@ public enum GameState{
     desacoplarMascarilla,
     conectarOxigeno,
     acoplarCapnografoYAmbuAlTubo,
-    insuflar,
-    RealizarAuscultacion,
+    insuflarRealizandoAuscultacion,
     asegurarTuboEnBoca,
 
     simulacionTerminada
