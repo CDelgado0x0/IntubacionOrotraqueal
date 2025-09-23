@@ -52,7 +52,7 @@ public class MaskBehaviour : MonoBehaviour
             parentCollider.SetActive(false);
             myCollider.isTrigger = false;
             myRb.isKinematic = false;
-            GameManager.applicationController.updateGameState(GameState.asegurarTuboEnBoca);
+            GameManager.applicationController.updateGameState(GameState.conectarOxigeno);
         }
     }
 }

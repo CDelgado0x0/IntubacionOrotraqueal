@@ -14,17 +14,21 @@ public class SyringeController : MonoBehaviour
 
     [HideInInspector] public bool isConected = false;
 
-    private bool canMoveNextStep = false;
+    private bool firstUse = false;
+    private bool secondUse = false;
 
     private void ComprobarActivacionGlobo(GameState state)
     {
+        firstUse = false;
+        secondUse = false;
+
         if (state == GameState.inflarBalonTuboOrotraqueal)
         {
-            canMoveNextStep = true;
+            firstUse = true;
         }
-        else
+        else if (state == GameState.inflarBalon)
         {
-            canMoveNextStep = false;
+            secondUse = true;
         }
     }
 
@@ -46,9 +50,14 @@ public class SyringeController : MonoBehaviour
         sliderValue = GetNormalizedPosition(transform.localPosition) * 100f;
         MytubeRenderer.SetBlendShapeWeight(0, sliderValue);
 
-        if (canMoveNextStep && sliderValue >= 99f)
+        if (firstUse && sliderValue >= 99f)
         {
             GameManager.applicationController.updateGameState(GameState.posicionarCabezaPaciente);
+        }
+
+        if (secondUse && sliderValue >= 99f)
+        {
+            GameManager.applicationController.updateGameState(GameState.quitarJeringa);
         }
     }
 

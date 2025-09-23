@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject meshColliderClosedMouth;
     [SerializeField] private GameObject meshColliderOpenedMouth;
 
+    [SerializeField] private GameObject oxygenConectionCollider;
+
     [Header("Spanish Textures")]
     [SerializeField] private Texture[] instruccionesES;
 
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour
 
         meshColliderClosedMouth.SetActive(true);
         meshColliderOpenedMouth.SetActive(false);
+        oxygenConectionCollider.SetActive(false);
     }
 
     private void OnValidate() //Esto sirve para poder cambiar el estado desde el inspector, comentar si no es necesario.
@@ -163,6 +166,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.conectarOxigeno:
+                oxygenConectionCollider.SetActive(true);
                 SetPantalla(17);
                 break;
 

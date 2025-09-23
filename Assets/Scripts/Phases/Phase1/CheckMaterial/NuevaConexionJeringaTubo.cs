@@ -15,8 +15,32 @@ public class NuevaConexionJeringaTubo : MonoBehaviour
     private Transform myRealParent;
     private bool canTrigger = true; // Evita múltiples triggers rápidos al tratar de soltar la jeringa por distancia
 
+    private bool checkConexion = false;
+    private bool checkDesconexion = false;
+
+    private void ComprobarConexionJeringa(GameState state)
+    {
+        checkConexion = false;
+        checkDesconexion = false;
+
+        if (state == GameState.conectarJeringa)
+        {
+            checkConexion = true;
+        }
+        else if (state == GameState.quitarJeringa)
+        {
+            checkDesconexion = true;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.onGameStateChanged -= ComprobarConexionJeringa;
+    }
+
     private void Start()
     {
+        GameManager.onGameStateChanged += ComprobarConexionJeringa;
         rb = GetComponent<Rigidbody>();
         myRealParent = transform.parent;
     }
@@ -45,6 +69,8 @@ public class NuevaConexionJeringaTubo : MonoBehaviour
 
             syringeConnected = true;
             transform.SetParent(other.transform);
+
+            if (checkConexion) GameManager.applicationController.updateGameState(GameState.inflarBalon);
         }
     }
 
@@ -61,14 +87,14 @@ public class NuevaConexionJeringaTubo : MonoBehaviour
             syringeConnected = false;
             rb.isKinematic = false;
             transform.SetParent(myRealParent);
+
+            if (checkDesconexion) GameManager.applicationController.updateGameState(GameState.desacoplarMascarilla);
         }
     }
 
     public void ComprobarDistancia()
     {
         float distance = Vector3.Distance(centralPoint.position, connectedObject.position);
-
-        
 
         if (distance > maxDistance)
         {
@@ -83,6 +109,8 @@ public class NuevaConexionJeringaTubo : MonoBehaviour
         rb.isKinematic = false;
         transform.SetParent(myRealParent);
         StartCoroutine(ResetDeManos());
+
+        if (checkDesconexion) GameManager.applicationController.updateGameState(GameState.desacoplarMascarilla);
     }
 
     IEnumerator ResetDeManos()
