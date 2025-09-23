@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pasoInsertarLaringo;
     [SerializeField] private PatientAnimations controladorBoca;
 
+    [SerializeField] private GameObject meshColliderClosedMouth;
+    [SerializeField] private GameObject meshColliderOpenedMouth;
+
     [Header("Spanish Textures")]
     [SerializeField] private Texture[] instruccionesES;
 
@@ -45,6 +48,9 @@ public class GameManager : MonoBehaviour
         pasosCanula.SetActive(false);
         pasoColocarPrimerAmbu.SetActive(false);
         pasoInsertarTubo.SetActive(false);
+
+        meshColliderClosedMouth.SetActive(true);
+        meshColliderOpenedMouth.SetActive(false);
     }
 
     private void OnValidate() //Esto sirve para poder cambiar el estado desde el inspector, comentar si no es necesario.
@@ -100,6 +106,8 @@ public class GameManager : MonoBehaviour
 
             case GameState.introducirCanulaGirada:
                 pasosCanula.SetActive(true);
+                meshColliderClosedMouth.SetActive(false);
+                meshColliderOpenedMouth.SetActive(true);
                 SetPantalla(4);
                 break;
 
