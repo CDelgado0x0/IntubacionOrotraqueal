@@ -15,6 +15,7 @@ TagManager:
   - SyringeGate
   - LaryngoscopeDetectable
   - CapnographDetectable
+  - AmbuFinalPos
   layers:
   - Default
   - TransparentFX

@@ -21,5 +21,13 @@ public class AmbuPositions : MonoBehaviour
             transform.rotation = other.transform.rotation;
             GameManager.applicationController.updateGameState(GameState.oxigenarPaciente);
         }
+        else if (other.CompareTag("AmbuFinalPos"))
+        {
+            Ambu.changeGrabMovement();
+            myRb.isKinematic = true;
+            transform.position = other.transform.position;
+            transform.rotation = other.transform.rotation;
+            GameManager.applicationController.updateGameState(GameState.oxigenarPaciente);
+        }
     }
 }

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pasoInsertarTubo;
     [SerializeField] private GameObject pasoInsertarLaringo;
     [SerializeField] private GameObject pasoInsertarCapnografo;
+    [SerializeField] private GameObject pasoPosicionFinalAmbu;
     [SerializeField] private PatientAnimations controladorBoca;
 
     [SerializeField] private GameObject meshColliderClosedMouth;
@@ -84,6 +85,7 @@ public class GameManager : MonoBehaviour
         pasoInsertarTubo.SetActive(false);
         pasoInsertarLaringo.SetActive(false);
         pasoInsertarCapnografo.SetActive(false);
+        pasoPosicionFinalAmbu.SetActive(false);
 
         state = newState;
 
@@ -174,6 +176,7 @@ public class GameManager : MonoBehaviour
 
             case GameState.acoplarCapnografoYAmbuAlTubo:
                 pasoInsertarCapnografo.SetActive(true);
+                pasoPosicionFinalAmbu.SetActive(true);
                 SetPantalla(18);
                 break;
 
