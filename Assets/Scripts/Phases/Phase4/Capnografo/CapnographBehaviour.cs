@@ -13,7 +13,7 @@ public class CapnographBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("OrotraquealDetectable"))
+        if (other.CompareTag("CapnographDetectable"))
         {
             CapnographHands.SetActive(false);
             myRb.isKinematic = true;
