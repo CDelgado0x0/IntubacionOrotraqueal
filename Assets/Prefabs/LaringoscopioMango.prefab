@@ -123,7 +123,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
@@ -307,6 +307,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laryngoscopeCameraCover: {fileID: 0}
+  completeLaryngoscopeVisual: {fileID: 0}
+  completeLaryngoscopeHands: {fileID: 0}
+  firstPhaseCanvas: {fileID: 0}
+  secondPhaseCanvas: {fileID: 0}
+  ganchoCollider: {fileID: 0}
 --- !u!65 &5713510319113518352
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -777,8 +782,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.010031149, y: 0.019740075, z: 0.07058054}
-  m_Center: {x: -0.008528115, y: 0.036373362, z: -0.023967959}
+  m_Size: {x: 0.010031149, y: 0.01712358, z: 0.05452156}
+  m_Center: {x: -0.008528115, y: 0.027468383, z: -0.017557502}
 --- !u!136 &4371601279159161524
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -798,10 +803,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.006234713
-  m_Height: 0.02099225
+  m_Radius: 0.0037422776
+  m_Height: 0.014
   m_Direction: 0
-  m_Center: {x: -0.0037078531, y: 0.022657432, z: -0.092270344}
+  m_Center: {x: -0.0037078522, y: 0.022657432, z: -0.07543814}
 --- !u!136 &3774355633926699108
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -821,10 +826,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.0011025816
-  m_Height: 0.019183934
+  m_Radius: 0.00086802617
+  m_Height: 0.0041721463
   m_Direction: 0
-  m_Center: {x: -0.0041001383, y: -0.010981366, z: -0.13530774}
+  m_Center: {x: -0.0028276145, y: 0.004068192, z: -0.089028955}
 --- !u!1 &4253540980973189453
 GameObject:
   m_ObjectHideFlags: 0
