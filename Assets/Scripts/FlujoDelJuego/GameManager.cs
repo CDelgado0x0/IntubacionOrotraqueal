@@ -15,7 +15,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pasosCanula;
     [SerializeField] private GameObject pasoColocarPrimerAmbu;
     [SerializeField] private GameObject pasoInsertarTubo;
+    [SerializeField] private GameObject pasoInsertarLaringo;
+    [SerializeField] private GameObject pasoInsertarCapnografo;
+    [SerializeField] private GameObject pasoPosicionFinalAmbu;
+    [SerializeField] private GameObject pasoColocarFijador;
     [SerializeField] private PatientAnimations controladorBoca;
+
+    [SerializeField] private GameObject meshColliderClosedMouth;
+    [SerializeField] private GameObject meshColliderOpenedMouth;
+
+    [SerializeField] private GameObject oxygenConectionCollider;
 
     [Header("Spanish Textures")]
     [SerializeField] private Texture[] instruccionesES;
@@ -44,6 +53,10 @@ public class GameManager : MonoBehaviour
         pasosCanula.SetActive(false);
         pasoColocarPrimerAmbu.SetActive(false);
         pasoInsertarTubo.SetActive(false);
+
+        meshColliderClosedMouth.SetActive(true);
+        meshColliderOpenedMouth.SetActive(false);
+        oxygenConectionCollider.SetActive(false);
     }
 
     private void OnValidate() //Esto sirve para poder cambiar el estado desde el inspector, comentar si no es necesario.
@@ -71,6 +84,10 @@ public class GameManager : MonoBehaviour
         pasosCanula.SetActive(false);
         pasoColocarPrimerAmbu.SetActive(false);
         pasoInsertarTubo.SetActive(false);
+        pasoInsertarLaringo.SetActive(false);
+        pasoInsertarCapnografo.SetActive(false);
+        pasoPosicionFinalAmbu.SetActive(false);
+        pasoColocarFijador.SetActive(false);
 
         state = newState;
 
@@ -98,6 +115,8 @@ public class GameManager : MonoBehaviour
 
             case GameState.introducirCanulaGirada:
                 pasosCanula.SetActive(true);
+                meshColliderClosedMouth.SetActive(false);
+                meshColliderOpenedMouth.SetActive(true);
                 SetPantalla(4);
                 break;
 
@@ -119,6 +138,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.introducirLaringoscopio:
+                pasoInsertarLaringo.SetActive(true);
                 SetPantalla(9);
                 break;
 
@@ -152,22 +172,22 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.conectarOxigeno:
+                oxygenConectionCollider.SetActive(true);
                 SetPantalla(17);
                 break;
 
             case GameState.acoplarCapnografoYAmbuAlTubo:
+                pasoInsertarCapnografo.SetActive(true);
+                pasoPosicionFinalAmbu.SetActive(true);
                 SetPantalla(18);
                 break;
 
-            case GameState.insuflar:
+            case GameState.insuflarRealizandoAuscultacion:
                 SetPantalla(19);
                 break;
 
-            case GameState.RealizarAuscultacion:
-                SetPantalla(20);
-                break;
-
             case GameState.asegurarTuboEnBoca:
+                pasoColocarFijador.SetActive(true);
                 SetPantalla(21);
                 break;
 
@@ -220,8 +240,7 @@ public enum GameState{
     desacoplarMascarilla,
     conectarOxigeno,
     acoplarCapnografoYAmbuAlTubo,
-    insuflar,
-    RealizarAuscultacion,
+    insuflarRealizandoAuscultacion,
     asegurarTuboEnBoca,
 
     simulacionTerminada

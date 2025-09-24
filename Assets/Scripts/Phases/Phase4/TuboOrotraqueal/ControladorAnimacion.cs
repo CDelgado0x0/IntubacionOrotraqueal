@@ -5,6 +5,7 @@ public class ControladorAnimacion : MonoBehaviour
     private Vector3 minPosition;
     private Vector3 maxPosition;
     [SerializeField] private float rangoMovimiento;
+    [SerializeField] private GameObject myHands;
     private int stateHash;
 
     public Animator animator;
@@ -24,6 +25,12 @@ public class ControladorAnimacion : MonoBehaviour
         sliderValue = GetNormalizedPosition(transform.position);
         animator.Play(stateHash, 0, sliderValue);
         animator.Update(0);
+
+        if (sliderValue >= 0.99f)
+        {
+            myHands.SetActive(false);
+            GameManager.applicationController.updateGameState(GameState.sacarLaringoscopio);
+        }
     }
 
     public void setPositions()

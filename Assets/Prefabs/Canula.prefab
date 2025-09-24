@@ -943,7 +943,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6475127290600512162}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07029876, y: -0.0021033084, z: -0.011871758, w: 0.99745315}
+  m_LocalRotation: {x: 0.07030034, y: -0.0020997634, z: -0.01187433, w: 0.997453}
   m_LocalPosition: {x: 0.02363982, y: 0.90830445, z: 0.25130507}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -954,7 +954,7 @@ Transform:
   - {fileID: 3637569985153703912}
   - {fileID: 4851036237576723100}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 8.059, y: -0.339, z: -1.388}
 --- !u!54 &7828743174492480524
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1031,7 +1031,19 @@ MonoBehaviour:
       m_Calls: []
   _whenUnselect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ObjectExtraction, Assembly-CSharp
+        m_MethodName: CanulaRelease
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _whenMove:
     m_PersistentCalls:
       m_Calls:

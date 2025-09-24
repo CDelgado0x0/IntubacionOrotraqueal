@@ -14,6 +14,9 @@ TagManager:
   - Support
   - SyringeGate
   - LaryngoscopeDetectable
+  - CapnographDetectable
+  - AmbuFinalPos
+  - BandageDetectable
   layers:
   - Default
   - TransparentFX
@@ -30,9 +33,9 @@ TagManager:
   - TuboOrotraqueal
   - Paciente
   - Jugador
-  - 
-  - 
-  - 
+  - LaringoCompleto
+  - ColliderCabezaPaciente
+  - Organs
   - 
   - 
   - 

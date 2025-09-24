@@ -13,9 +13,15 @@ public class AmbuContraints : MonoBehaviour
         ManosCompresor.SetActive(false);
     }
 
-    public void changeGrabMovement()
+    public void AmbuMovement()
     {
-        ManosAmbu.SetActive(!ManosAmbu.activeSelf);
-        ManosCompresor.SetActive(!ManosCompresor.activeSelf);
+        ManosAmbu.SetActive(true);
+        ManosCompresor.SetActive(false);
+    }
+
+    public void AmbuCompression()
+    {
+        ManosAmbu.SetActive(false);
+        ManosCompresor.SetActive(true);
     }
 }

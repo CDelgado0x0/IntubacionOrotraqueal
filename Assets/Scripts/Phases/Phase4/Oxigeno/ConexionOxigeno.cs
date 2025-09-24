@@ -12,6 +12,7 @@ public class ConexionOxigeno : MonoBehaviour
     private Rigidbody rb;
     private bool keepKinematicActive = false;
     private bool ambuConnected = false;
+    private bool oxygenAlwaysConnected = false;
 
     private void Start()
     {
@@ -43,9 +44,10 @@ public class ConexionOxigeno : MonoBehaviour
 
             if (other.CompareTag("OxyGate"))
             {
+                oxygenAlwaysConnected = true;
                 ambuConnected = true;
                 transform.SetParent(other.transform);
-                GameManager.applicationController.updateGameState(GameState.conectarOxigeno);
+                GameManager.applicationController.updateGameState(GameState.acoplarCapnografoYAmbuAlTubo);
             }
         }
     }
@@ -73,12 +75,16 @@ public class ConexionOxigeno : MonoBehaviour
             ambuConnected = false;
             rb.isKinematic = false;
             transform.SetParent(null);
+
+            if (oxygenAlwaysConnected) GameManager.applicationController.updateGameState(GameState.conectarOxigeno);
         }
     }
 
     public void ComprobarDistancia()
     {
         float distance = Vector3.Distance(transform.position, connectedObject.position);
+
+        Debug.Log("Distance: " + distance);
 
         if (distance > maxDistance)
         {
@@ -88,10 +94,12 @@ public class ConexionOxigeno : MonoBehaviour
 
     private void DesacoplarCable()
     {
+        Debug.Log("Desacoplo cable oxigeno");
         ambuConnected = false;
         rb.isKinematic = false;
         transform.SetParent(null);
         StartCoroutine(ResetDeManos());
+        if (oxygenAlwaysConnected) GameManager.applicationController.updateGameState(GameState.conectarOxigeno);
     }
 
     IEnumerator ResetDeManos()
