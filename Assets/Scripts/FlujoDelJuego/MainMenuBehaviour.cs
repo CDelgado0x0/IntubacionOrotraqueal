@@ -7,6 +7,7 @@ public class MainMenuBehaviour : MonoBehaviour
 
     public void OnStartButtonPressed()
     {
+        fakeLogin.OnFakeLoginButtonPressed(); // Simula el inicio de sesión
         StartCoroutine(WaitAndStartGame(3f));
     }
 
