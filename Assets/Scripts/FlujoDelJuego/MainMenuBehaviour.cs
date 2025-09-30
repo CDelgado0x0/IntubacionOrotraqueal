@@ -1,32 +1,33 @@
 using UnityEngine;
-using System.Collections;
 
 public class MainMenuBehaviour : MonoBehaviour
 {
-    public FakeLogin fakeLogin; // Asigna en el inspector
+    [SerializeField] private GameObject spanishMainButtons;
+    [SerializeField] private GameObject englishMainButtons;
+    [SerializeField] private GameObject mainMenu;
 
-    public void OnStartButtonPressed()
+    public void startButton()
     {
-        fakeLogin.OnFakeLoginButtonPressed(); // Simula el inicio de sesión
-        StartCoroutine(WaitAndStartGame(3f));
+        mainMenu.SetActive(false);
+        GameManager.applicationController.updateGameState(GameState.encenderLaringoscopio);
     }
 
-    private IEnumerator WaitAndStartGame(float waitTime)
+    public void changeToSpanish()
     {
-        yield return new WaitForSeconds(waitTime);
+        spanishMainButtons.SetActive(true);
+        englishMainButtons.SetActive(false);
+        GameManager.applicationController.CambiarIdioma(Language.Spanish);
+    }
 
-        if (fakeLogin != null && fakeLogin.LoginExitoso)
-        {
-            // Inicializa la partida despues de esperar 3 segundos
-            GameManager.applicationController.updateGameState(GameState.encenderLaringoscopio);
-            Debug.Log("Partida iniciada.");
+    public void changeToEnglish()
+    {
+        spanishMainButtons.SetActive(false);
+        englishMainButtons.SetActive(true);
+        GameManager.applicationController.CambiarIdioma(Language.English);
+    }
 
-        }
-        else
-        {
-            // Opcional: muestra mensaje de error
-            Debug.LogWarning("Debes iniciar sesión antes de comenzar la partida.");
-
-        }
+    public void quitButton()
+    {
+        Application.Quit();
     }
 }
