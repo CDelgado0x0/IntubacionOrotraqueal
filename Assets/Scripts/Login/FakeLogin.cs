@@ -6,7 +6,8 @@ using TMPro;
 
 public class FakeLogin : MonoBehaviour
 {
-
+    [SerializeField] private GameObject logInPanel;
+    [SerializeField] private GameObject mainMenuPanel;
     /*
  * ┌────────────────────────────────────────────────────────────┐
  * │               FakeLogin.cs – Simulación de login           │
@@ -88,6 +89,9 @@ public class FakeLogin : MonoBehaviour
 
                 PlayerPrefs.SetString("user_uid", result.uid);
                 LoginExitoso = true;
+
+                logInPanel.SetActive(false);
+                mainMenuPanel.SetActive(true);
             }
             else
             {

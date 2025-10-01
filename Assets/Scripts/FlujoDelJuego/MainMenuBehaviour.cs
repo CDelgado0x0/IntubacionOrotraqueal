@@ -35,15 +35,6 @@ public class MainMenuBehaviour : MonoBehaviour
 
     public void OnStartButtonPressed()
     {
-        StartCoroutine(StartGameAfterLogin());
-    }
-
-    private IEnumerator StartGameAfterLogin()
-    {
         fakeLogin.OnFakeLoginButtonPressed();
-
-        yield return new WaitForSeconds(2f);
-
-        if (fakeLogin.LoginExitoso) GameManager.applicationController.updateGameState(GameState.encenderLaringoscopio);
     }
 }
