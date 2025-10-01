@@ -5,20 +5,25 @@ using static Microsoft.MixedReality.Toolkit.Experimental.UI.NonNativeKeyboard;
 public class ShowKeyboard : MonoBehaviour
 {
     private TMP_InputField inputField;
+    [SerializeField] private GameObject keyboard;
 
-    public float scale = 0.1f;
-    public Transform positionSource;
-    public float rightOffset = 0.25f; // Ajusta este valor para mover el teclado más a la derecha
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
 
     void Start()
     {
         inputField = GetComponent<TMP_InputField>();
         inputField.onSelect.AddListener(x => OpenKeyboard());
+        initialPosition = keyboard.transform.position;
+        initialRotation = keyboard.transform.rotation;
     }   
 
     public void OpenKeyboard()
     {
+        keyboard.transform.position = initialPosition;
+        keyboard.transform.rotation = initialRotation;
 
+        keyboard.SetActive(true);
         //si es una contraseña el LayoutType es Alpha
         //Si no es una contraseña el LayoutType es Email
         NonNativeKeyboard.Instance.InputField = inputField;
@@ -32,23 +37,10 @@ public class ShowKeyboard : MonoBehaviour
             NonNativeKeyboard.Instance.PresentKeyboard(inputField.text, LayoutType.Email);
         }
 
-        
-
-
-        // Escala inicial
-        NonNativeKeyboard.Instance.transform.localScale = new Vector3(scale, scale, scale);
     }
 
-    void Update()
+    public void CloseKeyboard()
     {
-        if (NonNativeKeyboard.Instance != null && positionSource != null)
-        {
-            // Offset lateral para que esté más a la derecha de la muñeca
-            Vector3 offset = positionSource.right * rightOffset;
-            Vector3 targetPosition = positionSource.position + offset;
-
-            NonNativeKeyboard.Instance.RepositionKeyboard(targetPosition);
-            NonNativeKeyboard.Instance.transform.localScale = new Vector3(scale, scale, scale);
-        }
+        keyboard.SetActive(false);
     }
 }

@@ -252,6 +252,8 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
         /// <summary>
         /// Deactivate on Awake.
         /// </summary>
+        /// 
+        [SerializeField] private ShowKeyboard keyboardBehaviour;
         void Awake()
         {
             Instance = this;
@@ -281,7 +283,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
             InputField.keyboardType = (TouchScreenKeyboardType)(int.MaxValue);
 
             // Keep keyboard deactivated until needed
-            gameObject.SetActive(false);
+            keyboardBehaviour.CloseKeyboard();
         }
 
 
@@ -686,7 +688,8 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
 
                 case KeyboardKeyFunc.Function.Close:
                 {
-                    Close();
+                    //Close();
+                    keyboardBehaviour.CloseKeyboard();
                     break;
                 }
 
@@ -809,7 +812,8 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                 // Send text entered event and close the keyboard
                 OnTextSubmitted?.Invoke(this, EventArgs.Empty);
 
-                Close();
+                //Close();
+                keyboardBehaviour.CloseKeyboard();
             }
             else
             {

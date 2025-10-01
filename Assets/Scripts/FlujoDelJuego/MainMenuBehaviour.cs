@@ -5,6 +5,7 @@ public class MainMenuBehaviour : MonoBehaviour
     [SerializeField] private GameObject spanishMainButtons;
     [SerializeField] private GameObject englishMainButtons;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private FakeLogin fakeLogin;
 
     public void startButton()
     {
@@ -29,5 +30,10 @@ public class MainMenuBehaviour : MonoBehaviour
     public void quitButton()
     {
         Application.Quit();
+    }
+
+    public void OnStartButtonPressed()
+    {
+        fakeLogin.OnFakeLoginButtonPressed();
     }
 }

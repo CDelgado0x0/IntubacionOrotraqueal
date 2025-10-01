@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Texture[] instruccionesEN;
 
     private Dictionary<Language, Texture[]> instruccionesPorIdioma;
-    private Language idiomaActual = Language.Spanish;
+    private Language idiomaActual = Language.English;
 
 
     [ContextMenu("Reproducir Animación Paciente")] //Dar click derecho al componente desde el inspector para ejecutarlo
