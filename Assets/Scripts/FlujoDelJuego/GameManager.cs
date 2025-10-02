@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject oxygenConectionCollider;
 
+    [SerializeField] private TextMeshProUGUI usernameText;
+
     [Header("MenuLogIn")]
     [SerializeField] private GameObject logInMenu;
 
@@ -91,6 +93,7 @@ public class GameManager : MonoBehaviour
         {
             logInMenu.SetActive(false);
             mainMenu.SetActive(true);
+            usernameText.text = PlayerPrefs.GetString("user_al", "Guest");
         }
         else
         {
