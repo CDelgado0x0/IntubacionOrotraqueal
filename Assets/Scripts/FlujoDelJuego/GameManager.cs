@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI usernameText;
 
+    public SupabaseClient myDatabase;
+
     [Header("MenuLogIn")]
     [SerializeField] private GameObject logInMenu;
 

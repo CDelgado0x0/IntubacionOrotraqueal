@@ -100,6 +100,8 @@ public class FakeLogin : MonoBehaviour
                 logInPanel.SetActive(false);
                 mainMenuPanel.SetActive(true);
 
+                GameManager.applicationController.myDatabase.LogAction("Inicio de sesión", true, "Sesión iniciada por: " + email);
+
                 emailInputField.text = "";
                 passwordInputField.text = "";
                 mensajeTexto.text = "";
