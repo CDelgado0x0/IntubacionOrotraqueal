@@ -8,6 +8,7 @@ public class FakeLogin : MonoBehaviour
 {
     [SerializeField] private GameObject logInPanel;
     [SerializeField] private GameObject mainMenuPanel;
+    [SerializeField] private TextMeshProUGUI usernameText;
     /*
  * ┌────────────────────────────────────────────────────────────┐
  * │               FakeLogin.cs – Simulación de login           │
@@ -88,10 +89,20 @@ public class FakeLogin : MonoBehaviour
                 Debug.Log("Login successful. UID: " + result.uid);
 
                 PlayerPrefs.SetString("user_uid", result.uid);
+
+                string emailSinDominio = emailInputField.text.Replace("@uji.es", "");
+                PlayerPrefs.SetString("user_al", emailSinDominio);
+                PlayerPrefs.Save();
+                usernameText.text = emailSinDominio;
+
                 LoginExitoso = true;
 
                 logInPanel.SetActive(false);
                 mainMenuPanel.SetActive(true);
+
+                emailInputField.text = "";
+                passwordInputField.text = "";
+                mensajeTexto.text = "";
             }
             else
             {
@@ -122,7 +133,17 @@ public class FakeLogin : MonoBehaviour
     private void OnApplicationQuit()
     {
         PlayerPrefs.DeleteKey("user_uid");
+        PlayerPrefs.DeleteKey("user_al");
         PlayerPrefs.Save(); // Opcional pero recomendable
+    }
+
+    public void OnAutoFillToggleChanged(bool isOn)
+    {
+        if (isOn)
+        {
+            emailInputField.text = "al408758@uji.es";
+            passwordInputField.text = "Lluc1234";
+        }
     }
 
 }
