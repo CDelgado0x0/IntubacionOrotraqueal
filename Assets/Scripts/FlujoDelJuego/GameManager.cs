@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -26,6 +27,25 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject oxygenConectionCollider;
 
+    [Header("MenuLogIn")]
+    [SerializeField] private GameObject logInMenu;
+
+    [Header("MainMenu")]
+    [SerializeField] private GameObject mainMenu;
+
+    [Header("MenuInGame")]
+    [SerializeField] private GameObject inGameMenu;
+    [SerializeField] private GameObject spanishInGame;
+    [SerializeField] private GameObject englishInGame;
+
+    [Header("MenuEndGame")]
+    [SerializeField] private GameObject endGameMenu;
+    [SerializeField] private GameObject spanishEndGame;
+    [SerializeField] private GameObject englishEndGame;
+
+    [Header("Timer")]
+    [SerializeField] private TextMeshProUGUI timerText;
+
     [Header("Spanish Textures")]
     [SerializeField] private Texture[] instruccionesES;
 
@@ -34,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     private Dictionary<Language, Texture[]> instruccionesPorIdioma;
     private Language idiomaActual = Language.English;
+    private float elapsedTime;
 
 
     [ContextMenu("Reproducir Animación Paciente")] //Dar click derecho al componente desde el inspector para ejecutarlo
@@ -57,6 +78,24 @@ public class GameManager : MonoBehaviour
         meshColliderClosedMouth.SetActive(true);
         meshColliderOpenedMouth.SetActive(false);
         oxygenConectionCollider.SetActive(false);
+        elapsedTime = 0;
+
+        inGameMenu.SetActive(false);
+        endGameMenu.SetActive(false);
+        spanishInGame.SetActive(false);
+        englishInGame.SetActive(false);
+        spanishEndGame.SetActive(false);
+        englishEndGame.SetActive(false);
+
+        if (PlayerPrefs.HasKey("user_uid"))
+        {
+            logInMenu.SetActive(false);
+            mainMenu.SetActive(true);
+        }
+        else
+        {
+            logInMenu.SetActive(true);
+        }
     }
 
     private void OnValidate() //Esto sirve para poder cambiar el estado desde el inspector, comentar si no es necesario.
@@ -71,6 +110,18 @@ public class GameManager : MonoBehaviour
         }
 
         updateGameState(state);
+    }
+
+    private void Update()
+    {
+        if (state == GameState.menuPrincipal || state == GameState.simulacionTerminada) return;
+
+        elapsedTime += Time.deltaTime;
+
+        int minutes = Mathf.FloorToInt(elapsedTime / 60f);
+        int seconds = Mathf.FloorToInt(elapsedTime % 60f);
+
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void CambiarIdioma(Language nuevoIdioma)
@@ -99,6 +150,7 @@ public class GameManager : MonoBehaviour
 
             case GameState.encenderLaringoscopio:
                 SetPantalla(0);
+                OpenInGameMenu();
                 break;
 
             case GameState.inflarBalonTuboOrotraqueal:
@@ -193,6 +245,7 @@ public class GameManager : MonoBehaviour
 
             case GameState.simulacionTerminada:
                 SetPantalla(22);
+                OpenEndGameMenu();
                 break;
         }
 
@@ -206,6 +259,43 @@ public class GameManager : MonoBehaviour
         {
             LEDPantallas.SetTexture("_BaseMap", instrucciones[index]);
             LEDPantallas.SetTexture("_EmissionMap", instrucciones[index]);
+        }
+    }
+
+    private void OpenInGameMenu()
+    {
+        inGameMenu.SetActive(true);
+        
+        if(idiomaActual == Language.Spanish)
+        {
+            spanishInGame.SetActive(true);
+        }
+        else
+        {
+            englishInGame.SetActive(true);
+        }
+    }
+
+    private void CloseInGameMenu()
+    {
+        inGameMenu.SetActive(false);
+        spanishInGame.SetActive(false);
+        englishInGame.SetActive(false);
+    }
+
+    public void OpenEndGameMenu()
+    {
+        CloseInGameMenu();
+
+        endGameMenu.SetActive(true);
+
+        if (idiomaActual == Language.Spanish)
+        {
+            spanishEndGame.SetActive(true);
+        }
+        else
+        {
+            englishEndGame.SetActive(true);
         }
     }
 

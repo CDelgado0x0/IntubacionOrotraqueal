@@ -1,10 +1,13 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject spanishMainButtons;
     [SerializeField] private GameObject englishMainButtons;
     [SerializeField] private GameObject mainMenu;
+
     [SerializeField] private FakeLogin fakeLogin;
 
     public void startButton()
@@ -35,5 +38,10 @@ public class MainMenuBehaviour : MonoBehaviour
     public void OnStartButtonPressed()
     {
         fakeLogin.OnFakeLoginButtonPressed();
+    }
+
+    public void endButton()
+    {
+        SceneManager.LoadSceneAsync("MainScene");
     }
 }
