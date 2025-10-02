@@ -27,6 +27,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject oxygenConectionCollider;
 
+    [Header("MenuLogIn")]
+    [SerializeField] private GameObject logInMenu;
+
+    [Header("MainMenu")]
+    [SerializeField] private GameObject mainMenu;
+
     [Header("MenuInGame")]
     [SerializeField] private GameObject inGameMenu;
     [SerializeField] private GameObject spanishInGame;
@@ -80,6 +86,16 @@ public class GameManager : MonoBehaviour
         englishInGame.SetActive(false);
         spanishEndGame.SetActive(false);
         englishEndGame.SetActive(false);
+
+        if (PlayerPrefs.HasKey("user_uid"))
+        {
+            logInMenu.SetActive(false);
+            mainMenu.SetActive(true);
+        }
+        else
+        {
+            logInMenu.SetActive(true);
+        }
     }
 
     private void OnValidate() //Esto sirve para poder cambiar el estado desde el inspector, comentar si no es necesario.
