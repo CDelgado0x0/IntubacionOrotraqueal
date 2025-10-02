@@ -33,6 +33,7 @@ public class MainMenuBehaviour : MonoBehaviour
     {
         mainMenu.SetActive(false);
         GameManager.applicationController.updateGameState(GameState.encenderLaringoscopio);
+        GameManager.applicationController.myDatabase.LogAction("Inicio de la simulación", true, "");
     }
 
     public void changeToSpanish()
@@ -63,7 +64,19 @@ public class MainMenuBehaviour : MonoBehaviour
         fakeLogin.OnFakeLoginButtonPressed();
     }
 
+    public void restartButton()
+    {
+        GameManager.applicationController.myDatabase.LogAction("La simulación ha sido reiniciada", true, "Tiempo de simulación: " + GameManager.applicationController.timerText);
+        reloadScene();
+    }
+
     public void endButton()
+    {
+        GameManager.applicationController.myDatabase.LogAction("La simulación ha sido completada con éxito", true, "Tiempo de simulación: " + GameManager.applicationController.timerText);
+        reloadScene();
+    }
+
+    private void reloadScene()
     {
         ambientSlider.SaveSliderValue();
         effectsSlider.SaveSliderValue();

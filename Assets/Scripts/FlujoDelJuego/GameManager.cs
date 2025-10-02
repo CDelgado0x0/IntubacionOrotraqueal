@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject englishEndGame;
 
     [Header("Timer")]
-    [SerializeField] private TextMeshProUGUI timerText;
+    public TextMeshProUGUI timerText;
 
     [Header("Spanish Textures")]
     [SerializeField] private Texture[] instruccionesES;
@@ -136,6 +136,10 @@ public class GameManager : MonoBehaviour
     }
 
     public void updateGameState(GameState newState){
+
+        if (state != GameState.menuPrincipal && state != GameState.simulacionTerminada){
+            myDatabase.LogAction("Avanza al siguiente paso", true, "Siguiente paso: " + newState);
+        }
 
         pasosCanula.SetActive(false);
         pasoColocarPrimerAmbu.SetActive(false);
