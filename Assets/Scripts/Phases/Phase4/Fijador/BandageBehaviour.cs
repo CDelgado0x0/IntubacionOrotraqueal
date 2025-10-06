@@ -17,6 +17,7 @@ public class BandageBehaviour : MonoBehaviour
         if (other.CompareTag("BandageDetectable"))
         {
             connectSound.Play();
+
             fixedBandage.SetActive(true);
             GameManager.applicationController.updateGameState(GameState.simulacionTerminada);
             gameObject.SetActive(false);
