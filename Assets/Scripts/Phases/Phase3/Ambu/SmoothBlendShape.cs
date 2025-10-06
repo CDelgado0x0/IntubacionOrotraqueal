@@ -40,6 +40,9 @@ public class SmoothBlendShape : MonoBehaviour
     private bool primerUso = false;
     private bool segundoUso = false;
 
+    private float insuflacionesCorrectas = 0;
+    private float insuflacionesIncorrectas = 0;
+
     private void ComprobarPasos(GameState state)
     {
         primerUso = false;
@@ -48,10 +51,14 @@ public class SmoothBlendShape : MonoBehaviour
         if (state == GameState.oxigenarPaciente)
         {
             primerUso = true;
+            insuflacionesCorrectas = 0;
+            insuflacionesIncorrectas = 0;
         }
         else if (state == GameState.insuflarRealizandoAuscultacion)
         {
             segundoUso = true;
+            insuflacionesCorrectas = 0;
+            insuflacionesIncorrectas = 0;
         }
     }
 
@@ -154,10 +161,12 @@ public class SmoothBlendShape : MonoBehaviour
             {
                 successTimer += interval;
                 respiracionCorrecta.Play();
+                insuflacionesCorrectas += 1;
             }
             else
             {
                 successTimer = 0f;
+                insuflacionesIncorrectas += 1;
             }
         }
 
@@ -170,11 +179,13 @@ public class SmoothBlendShape : MonoBehaviour
                 Ambu.AmbuMovement();
                 GameManager.applicationController.updateGameState(GameState.extraerAmbuYCanula);
                 successTimer = 0f;
+                GameManager.applicationController.myDatabase.LogAction("Insuflaciones de oxigenación realizadas", true, "Han sido " + insuflacionesCorrectas + "y" + insuflacionesIncorrectas  + "incorrectas.");
 
             }
             else if (segundoUso)
             {
                 GameManager.applicationController.updateGameState(GameState.asegurarTuboEnBoca);
+                GameManager.applicationController.myDatabase.LogAction("Insuflaciones de intubación realizadas", true, "Han sido " + insuflacionesCorrectas + "y" + insuflacionesIncorrectas + "incorrectas.");
             }
             
         }

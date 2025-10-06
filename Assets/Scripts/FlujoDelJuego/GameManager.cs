@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI usernameText;
 
+    public SupabaseClient myDatabase;
+
     [Header("MenuLogIn")]
     [SerializeField] private GameObject logInMenu;
 
@@ -46,13 +48,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject englishEndGame;
 
     [Header("Timer")]
-    [SerializeField] private TextMeshProUGUI timerText;
+    public TextMeshProUGUI timerText;
 
     [Header("Spanish Textures")]
     [SerializeField] private Texture[] instruccionesES;
 
     [Header("English Textures")]
     [SerializeField] private Texture[] instruccionesEN;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioSource correctSound;
 
     private Dictionary<Language, Texture[]> instruccionesPorIdioma;
     private Language idiomaActual = Language.English;
@@ -134,6 +139,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void updateGameState(GameState newState){
+
+        if (state != GameState.menuPrincipal && state != GameState.simulacionTerminada){
+            correctSound.Play();
+            myDatabase.LogAction("Avanza al siguiente paso", true, "Siguiente paso: " + newState);
+        }
 
         pasosCanula.SetActive(false);
         pasoColocarPrimerAmbu.SetActive(false);

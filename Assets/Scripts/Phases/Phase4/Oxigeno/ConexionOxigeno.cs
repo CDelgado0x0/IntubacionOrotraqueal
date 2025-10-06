@@ -14,6 +14,8 @@ public class ConexionOxigeno : MonoBehaviour
     private bool ambuConnected = false;
     private bool oxygenAlwaysConnected = false;
 
+    [SerializeField] private AudioSource disconnectSound;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -65,6 +67,7 @@ public class ConexionOxigeno : MonoBehaviour
 
     public void grabConnector() //Se llama desde el event
     {
+        disconnectSound.Play();
         keepKinematicActive = false;
     }
 
@@ -94,7 +97,7 @@ public class ConexionOxigeno : MonoBehaviour
 
     private void DesacoplarCable()
     {
-        Debug.Log("Desacoplo cable oxigeno");
+        disconnectSound.Play();
         ambuConnected = false;
         rb.isKinematic = false;
         transform.SetParent(null);

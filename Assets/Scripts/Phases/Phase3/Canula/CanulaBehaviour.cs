@@ -27,6 +27,9 @@ public class CanulaBehaviour : MonoBehaviour
     [Range(0f, 100f)]
     private float limitedRotationRange = 0f;
 
+    private bool positionDone = false;
+    private bool rotationDone = false;
+
 
     private void Start()
     {
@@ -68,8 +71,9 @@ public class CanulaBehaviour : MonoBehaviour
         if (limitedMovement){
             limitedMovementRange = GetNormalizedPosition(transform.localPosition) * 100f;
 
-            if (limitedMovementRange >= 99f)
+            if (limitedMovementRange >= 99f && !positionDone)
             {
+                positionDone = true;
                 StartCoroutine(HandsChange());
                 GameManager.applicationController.updateGameState(GameState.girarCanula);
                 limitedMovement = false;
@@ -80,8 +84,9 @@ public class CanulaBehaviour : MonoBehaviour
         else if (limitedRotation)
         {
             limitedRotationRange = GetNormalizedRotation(transform.localRotation) * 100f;
-            if (limitedRotationRange >= 99f)
+            if (limitedRotationRange >= 99f && !rotationDone)
             {
+                rotationDone = true;
                 Manos.SetActive(false);
                 GameManager.applicationController.updateGameState(GameState.colocarAmbu);
                 limitedRotation = false;
