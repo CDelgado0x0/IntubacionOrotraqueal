@@ -15,6 +15,7 @@ public class ConexionOxigeno : MonoBehaviour
     private bool oxygenAlwaysConnected = false;
 
     [SerializeField] private AudioSource disconnectSound;
+    [SerializeField] private AudioSource connectSound;
 
     private void Start()
     {
@@ -35,6 +36,7 @@ public class ConexionOxigeno : MonoBehaviour
     {
         if ((other.CompareTag("OxyGate") || other.CompareTag("Support")))
         {
+            connectSound.Play();
             if (ambuConnected) return;
             keepKinematicActive = true;
 
