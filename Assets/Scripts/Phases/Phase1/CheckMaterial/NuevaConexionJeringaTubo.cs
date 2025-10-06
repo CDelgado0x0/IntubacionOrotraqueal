@@ -18,6 +18,8 @@ public class NuevaConexionJeringaTubo : MonoBehaviour
     private bool checkConexion = false;
     private bool checkDesconexion = false;
 
+    [SerializeField] private AudioSource disconnectSound;
+
     private void ComprobarConexionJeringa(GameState state)
     {
         checkConexion = false;
@@ -104,6 +106,7 @@ public class NuevaConexionJeringaTubo : MonoBehaviour
 
     private void DesacoplarCable()
     {
+        disconnectSound.Play();
         syringeConnected = false;
         syringeBehaviour.isConected = false;
         rb.isKinematic = false;

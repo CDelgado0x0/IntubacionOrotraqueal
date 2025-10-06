@@ -12,6 +12,8 @@ public class MaskBehaviour : MonoBehaviour
     public BoxCollider myCollider;
     public GameObject parentCollider;
 
+    [SerializeField] private AudioSource disconnectSound;
+
     private void DesacoploMascarilla(GameState state)
     {
         if (state == GameState.desacoplarMascarilla)
@@ -40,6 +42,7 @@ public class MaskBehaviour : MonoBehaviour
     {
         if (scriptActive)
         {
+            disconnectSound.Play();
             transform.parent = null;
             myGrab.InjectOptionalOneGrabTransformer(FreeGrab);
         }
