@@ -141,10 +141,10 @@ public class GameManager : MonoBehaviour
 
     public void updateGameState(GameState newState){
 
-        if (state != GameState.menuPrincipal && state != GameState.simulacionTerminada){
-            CorrectSoundPlayer(newState);
-            myDatabase.LogAction("Avanza al siguiente paso", true, "Siguiente paso: " + newState);
-        }
+        //if (state != GameState.menuPrincipal && state != GameState.simulacionTerminada)
+
+        CorrectSoundPlayer(newState);
+        myDatabase.LogAction("Paso realizado: " + state, true, "Siguiente paso: " + newState);
 
         pasosCanula.SetActive(false);
         pasoColocarPrimerAmbu.SetActive(false);

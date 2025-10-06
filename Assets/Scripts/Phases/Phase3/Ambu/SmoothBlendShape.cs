@@ -179,13 +179,13 @@ public class SmoothBlendShape : MonoBehaviour
                 Ambu.AmbuMovement();
                 GameManager.applicationController.updateGameState(GameState.extraerAmbuYCanula);
                 successTimer = 0f;
-                GameManager.applicationController.myDatabase.LogAction("Insuflaciones de oxigenación realizadas", true, "Han sido " + insuflacionesCorrectas + "y" + insuflacionesIncorrectas  + "incorrectas.");
+                GameManager.applicationController.myDatabase.LogAction("Insuflaciones de oxigenación realizadas", true, "Han sido " + insuflacionesCorrectas + " correctas, y " + insuflacionesIncorrectas  + " incorrectas.");
 
             }
             else if (segundoUso)
             {
                 GameManager.applicationController.updateGameState(GameState.asegurarTuboEnBoca);
-                GameManager.applicationController.myDatabase.LogAction("Insuflaciones de intubación realizadas", true, "Han sido " + insuflacionesCorrectas + "y" + insuflacionesIncorrectas + "incorrectas.");
+                GameManager.applicationController.myDatabase.LogAction("Insuflaciones de intubación realizadas", true, "Han sido " + insuflacionesCorrectas + " correctas, y " + insuflacionesIncorrectas + " incorrectas.");
             }
             
         }
