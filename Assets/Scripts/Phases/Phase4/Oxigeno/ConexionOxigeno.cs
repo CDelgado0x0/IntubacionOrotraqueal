@@ -36,7 +36,6 @@ public class ConexionOxigeno : MonoBehaviour
     {
         if ((other.CompareTag("OxyGate") || other.CompareTag("Support")))
         {
-            connectSound.Play();
             if (ambuConnected) return;
             keepKinematicActive = true;
 
@@ -48,6 +47,7 @@ public class ConexionOxigeno : MonoBehaviour
 
             if (other.CompareTag("OxyGate"))
             {
+                connectSound.Play();
                 oxygenAlwaysConnected = true;
                 ambuConnected = true;
                 transform.SetParent(other.transform);
