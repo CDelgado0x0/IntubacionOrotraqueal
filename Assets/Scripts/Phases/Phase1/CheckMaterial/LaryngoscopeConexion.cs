@@ -17,6 +17,8 @@ public class LaryngoscopeConexion : MonoBehaviour
     [SerializeField] private GameObject secondPhaseCanvas;
     [SerializeField] private Collider ganchoCollider;
 
+    [SerializeField] private AudioSource connectSound;
+
     private void ComprobarActivacionLaringoscopio(GameState state)
     {
         if (state == GameState.encenderLaringoscopio || state == GameState.introducirLaringoscopio)
@@ -51,6 +53,7 @@ public class LaryngoscopeConexion : MonoBehaviour
 
         if (other.CompareTag("Gancho"))
         {
+            connectSound.Play();
             manosGancho = other.transform.Find("HandGrab");
             Transform ganchoColliders = other.transform.Find("Colliders");
             Transform laryngoscopeLight = other.transform.Find("Light");

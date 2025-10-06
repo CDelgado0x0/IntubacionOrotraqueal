@@ -34,6 +34,9 @@ public class LaryngoscopeBehaviour : MonoBehaviour
     private Vector3 minPosition;
     private Vector3 maxPosition;
 
+    private bool firstStepDone = false;
+    private bool secondStepDone = false;
+
     private void ComprobarActivacionManos(GameState state)
     {
         if (state== GameState.introducirLaringoscopio)
@@ -92,8 +95,9 @@ public class LaryngoscopeBehaviour : MonoBehaviour
         // Cambio de estado al completar movimiento
         if (movementRange >= 99f)
         {
-            if (isFirst)
+            if (isFirst && !firstStepDone)
             {
+                firstStepDone = true;
                 StartCoroutine(ChangeHands());
                 GameManager.applicationController.updateGameState(nextState);
 
@@ -105,8 +109,9 @@ public class LaryngoscopeBehaviour : MonoBehaviour
 
                 SetGrabTransformer(secondMovement);
             }
-            else
+            else if (!secondStepDone)
             {
+                secondStepDone = true;
                 myHands.SetActive(false);
                 myCollider.SetActive(false);
 

@@ -7,6 +7,7 @@ public class ControladorAnimacion : MonoBehaviour
     [SerializeField] private float rangoMovimiento;
     [SerializeField] private GameObject myHands;
     private int stateHash;
+    private bool stepDone = false;
 
     public Animator animator;
 
@@ -26,8 +27,9 @@ public class ControladorAnimacion : MonoBehaviour
         animator.Play(stateHash, 0, sliderValue);
         animator.Update(0);
 
-        if (sliderValue >= 0.99f)
+        if (sliderValue >= 0.99f && !stepDone)
         {
+            stepDone = true;
             myHands.SetActive(false);
             GameManager.applicationController.updateGameState(GameState.sacarLaringoscopio);
         }

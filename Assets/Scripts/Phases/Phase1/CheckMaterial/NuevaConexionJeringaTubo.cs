@@ -19,6 +19,7 @@ public class NuevaConexionJeringaTubo : MonoBehaviour
     private bool checkDesconexion = false;
 
     [SerializeField] private AudioSource disconnectSound;
+    [SerializeField] private AudioSource connectSound;
 
     private void ComprobarConexionJeringa(GameState state)
     {
@@ -59,6 +60,7 @@ public class NuevaConexionJeringaTubo : MonoBehaviour
     {
         if (other.CompareTag("SyringeGate") && canTrigger)
         {
+            connectSound.Play();
             syringeBehaviour.isConected = true;
             canTrigger = false;
 
