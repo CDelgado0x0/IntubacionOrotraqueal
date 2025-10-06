@@ -109,8 +109,9 @@ public class LaryngoscopeBehaviour : MonoBehaviour
 
                 SetGrabTransformer(secondMovement);
             }
-            else if (!secondStepDone)
+            else if (!isFirst && !secondStepDone)
             {
+                Debug.Log("Segundo paso completado");
                 secondStepDone = true;
                 myHands.SetActive(false);
                 myCollider.SetActive(false);
