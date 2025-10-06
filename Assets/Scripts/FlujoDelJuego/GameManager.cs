@@ -56,6 +56,9 @@ public class GameManager : MonoBehaviour
     [Header("English Textures")]
     [SerializeField] private Texture[] instruccionesEN;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource correctSound;
+
     private Dictionary<Language, Texture[]> instruccionesPorIdioma;
     private Language idiomaActual = Language.English;
     private float elapsedTime;
@@ -138,6 +141,7 @@ public class GameManager : MonoBehaviour
     public void updateGameState(GameState newState){
 
         if (state != GameState.menuPrincipal && state != GameState.simulacionTerminada){
+            correctSound.Play();
             myDatabase.LogAction("Avanza al siguiente paso", true, "Siguiente paso: " + newState);
         }
 
