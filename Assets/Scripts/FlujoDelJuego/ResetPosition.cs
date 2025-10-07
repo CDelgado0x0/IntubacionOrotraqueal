@@ -14,9 +14,9 @@ public class ResetPosition : MonoBehaviour
     [SerializeField] private AudioClip[] collisionClips;
 
     [Header("Settings")]
-    [SerializeField] private float minVolume = 1.2f;
-    [SerializeField] private float maxVolume = 2.0f;
-    [SerializeField] private float maxAirTime = 2.0f;
+    [SerializeField] private float minVolume = 0.2f;
+    [SerializeField] private float maxVolume = 1.0f;
+    [SerializeField] private float maxAirTime = 1.0f;
 
     private void Start()
     {
