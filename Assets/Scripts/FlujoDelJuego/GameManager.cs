@@ -281,10 +281,12 @@ public class GameManager : MonoBehaviour
         if (correctSound == null) return;
         int stepIndex = (int)step;
 
-        float minPitch = 0.75f;
+        float minPitch = 0.9f;
         float maxPitch = 1f;
 
+        
         int totalSteps = (int)GameState.simulacionTerminada;
+        Debug.Log("Step Index: " + (float)stepIndex / totalSteps);
         float pitch = Mathf.Lerp(minPitch, maxPitch, (float)stepIndex / totalSteps);
         correctSound.pitch = pitch;
         correctSound.Play();
