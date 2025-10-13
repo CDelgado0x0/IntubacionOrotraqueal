@@ -16,6 +16,8 @@ public class ConexionOxigeno : MonoBehaviour
 
     [SerializeField] private AudioSource disconnectSound;
     [SerializeField] private AudioSource connectSound;
+    [SerializeField] private AudioClip[] connectionClips;
+
 
     private void Start()
     {
@@ -47,7 +49,7 @@ public class ConexionOxigeno : MonoBehaviour
 
             if (other.CompareTag("OxyGate"))
             {
-                connectSound.Play();
+                PlayConnectedSound();
                 oxygenAlwaysConnected = true;
                 ambuConnected = true;
                 transform.SetParent(other.transform);
@@ -70,6 +72,7 @@ public class ConexionOxigeno : MonoBehaviour
     public void grabConnector() //Se llama desde el event
     {
         disconnectSound.Play();
+        ambuConnected = false;
         keepKinematicActive = false;
     }
 
@@ -113,4 +116,11 @@ public class ConexionOxigeno : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Manos.SetActive(true);
     }
+
+    void PlayConnectedSound()
+    {
+        int index = Random.Range(0, connectionClips.Length);
+        connectSound.PlayOneShot(connectionClips[index]);
+    }
+
 }

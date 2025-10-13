@@ -2,6 +2,8 @@ using Oculus.Interaction;
 using System.Collections;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.Rendering;
 
 public class LaryngoscopeConexion : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class LaryngoscopeConexion : MonoBehaviour
     [SerializeField] private Collider ganchoCollider;
 
     [SerializeField] private AudioSource connectSound;
+    [SerializeField] private AudioClip[] connectionClips;
 
     private void ComprobarActivacionLaringoscopio(GameState state)
     {
@@ -53,7 +56,8 @@ public class LaryngoscopeConexion : MonoBehaviour
 
         if (other.CompareTag("Gancho"))
         {
-            connectSound.Play();
+            PlayConnectedSound();
+
             manosGancho = other.transform.Find("HandGrab");
             Transform ganchoColliders = other.transform.Find("Colliders");
             Transform laryngoscopeLight = other.transform.Find("Light");
@@ -87,5 +91,10 @@ public class LaryngoscopeConexion : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-    
+
+    void PlayConnectedSound() 
+    {
+        int index = Random.Range(0, connectionClips.Length);
+        connectSound.PlayOneShot(connectionClips[index]);
+    }
 }

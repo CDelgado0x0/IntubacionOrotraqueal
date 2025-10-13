@@ -8,6 +8,8 @@ public class CapnographBehaviour : MonoBehaviour
     private Rigidbody myRb;
 
     [SerializeField] private AudioSource connectSound;
+    [SerializeField] private AudioClip[] connectionClips;
+
 
     void Start()
     {
@@ -18,12 +20,18 @@ public class CapnographBehaviour : MonoBehaviour
     {
         if (other.CompareTag("CapnographDetectable"))
         {
-            connectSound.Play();
+            PlayConnectedSound();
             CapnographHands.SetActive(false);
             myRb.isKinematic = true;
             transform.position = other.transform.position;
             transform.rotation = other.transform.rotation;
             ambuController.capnographConnected = true;
         }
+    }
+
+    void PlayConnectedSound()
+    {
+        int index = Random.Range(0, connectionClips.Length);
+        connectSound.PlayOneShot(connectionClips[index]);
     }
 }

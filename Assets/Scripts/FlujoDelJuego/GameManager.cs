@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Sounds")]
     [SerializeField] private AudioSource correctSound;
+    [SerializeField] private AudioSource wrongSound;
 
     private Dictionary<Language, Texture[]> instruccionesPorIdioma;
     private Language idiomaActual = Language.English;
@@ -143,7 +144,11 @@ public class GameManager : MonoBehaviour
 
         //if (state != GameState.menuPrincipal && state != GameState.simulacionTerminada)
 
-        CorrectSoundPlayer(newState);
+        if((int)newState < (int)state)
+            wrongSound.Play();
+        else
+            CorrectSoundPlayer(newState);
+
         myDatabase.LogAction("Paso realizado: " + state, true, "Siguiente paso: " + newState);
 
         pasosCanula.SetActive(false);

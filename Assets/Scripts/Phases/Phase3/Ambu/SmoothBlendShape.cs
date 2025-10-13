@@ -35,6 +35,8 @@ public class SmoothBlendShape : MonoBehaviour
     private float successTimer = 0f;
 
     [SerializeField] private AudioSource respiracionCorrecta;
+    [SerializeField] private AudioSource respiracionIncorrecta;
+
     [SerializeField] private AmbuContraints Ambu;
 
     private bool primerUso = false;
@@ -166,6 +168,7 @@ public class SmoothBlendShape : MonoBehaviour
             else
             {
                 successTimer = 0f;
+                respiracionIncorrecta.Play();
                 insuflacionesIncorrectas += 1;
             }
         }

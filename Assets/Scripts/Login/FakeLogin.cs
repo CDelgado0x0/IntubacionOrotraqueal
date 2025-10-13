@@ -108,14 +108,23 @@ public class FakeLogin : MonoBehaviour
             }
             else
             {
-                mensajeTexto.text = "Error: Usuario o contraseña incorrectos.";
                 Debug.LogWarning("Login failed: " + responseText);
                 LoginExitoso = false;
             }
         }
         else
         {
-            mensajeTexto.text = $"Error en la conexión: {request.responseCode}";
+            
+
+            //Si el error es 401, el ususario o la contraseña son incorrectos
+            if (request.responseCode == 401)
+            {
+                mensajeTexto.text = "Email o contraseña incorrectos.";
+            }
+            else
+            {
+                mensajeTexto.text = $"Error en la conexión: {request.responseCode}";
+            }
             Debug.LogError("HTTP error: " + request.responseCode + " - " + request.downloadHandler.text);
             LoginExitoso = false;
         }

@@ -20,6 +20,8 @@ public class NuevaConexionJeringaTubo : MonoBehaviour
 
     [SerializeField] private AudioSource disconnectSound;
     [SerializeField] private AudioSource connectSound;
+    [SerializeField] private AudioClip[] connectionClips;
+
 
     private void ComprobarConexionJeringa(GameState state)
     {
@@ -60,7 +62,7 @@ public class NuevaConexionJeringaTubo : MonoBehaviour
     {
         if (other.CompareTag("SyringeGate") && canTrigger)
         {
-            connectSound.Play();
+            PlayConnectedSound();
             syringeBehaviour.isConected = true;
             canTrigger = false;
 
@@ -124,5 +126,11 @@ public class NuevaConexionJeringaTubo : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Manos.SetActive(true);
         canTrigger = true;
+    }
+
+    void PlayConnectedSound()
+    {
+        int index = Random.Range(0, connectionClips.Length);
+        connectSound.PlayOneShot(connectionClips[index]);
     }
 }

@@ -9,6 +9,8 @@ public class AmbuPositions : MonoBehaviour
     [HideInInspector] public bool capnographConnected = false;
 
     [SerializeField] private AudioSource connectSound;
+    [SerializeField] private AudioClip[] connectionClips;
+
 
     private void Start()
     {
@@ -27,7 +29,7 @@ public class AmbuPositions : MonoBehaviour
         }
         else if (other.CompareTag("AmbuFinalPos") && capnographConnected)
         {
-            connectSound.Play();
+            PlayConnectedSound();
             Ambu.AmbuCompression();
             myRb.isKinematic = true;
             transform.position = other.transform.position;
@@ -35,4 +37,11 @@ public class AmbuPositions : MonoBehaviour
             GameManager.applicationController.updateGameState(GameState.insuflarRealizandoAuscultacion);
         }
     }
+
+    void PlayConnectedSound()
+    {
+        int index = Random.Range(0, connectionClips.Length);
+        connectSound.PlayOneShot(connectionClips[index]);
+    }
+
 }
