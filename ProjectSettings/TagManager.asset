@@ -28,7 +28,7 @@ TagManager:
   - Floor
   - Paredes
   - Wire
-  - Laringoscopio
+  - StaticObjects
   - Manos
   - TuboOrotraqueal
   - Paciente
@@ -36,8 +36,8 @@ TagManager:
   - LaringoCompleto
   - ColliderCabezaPaciente
   - Organs
-  - 
-  - 
+  - Syringe
+  - DefaultObject
   - 
   - 
   - 

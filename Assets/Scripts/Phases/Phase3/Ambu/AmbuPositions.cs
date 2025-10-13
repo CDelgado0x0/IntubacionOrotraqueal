@@ -8,6 +8,8 @@ public class AmbuPositions : MonoBehaviour
 
     [HideInInspector] public bool capnographConnected = false;
 
+    [SerializeField] private AudioSource connectSound;
+
     private void Start()
     {
         myRb = GetComponent<Rigidbody>();
@@ -25,6 +27,7 @@ public class AmbuPositions : MonoBehaviour
         }
         else if (other.CompareTag("AmbuFinalPos") && capnographConnected)
         {
+            connectSound.Play();
             Ambu.AmbuCompression();
             myRb.isKinematic = true;
             transform.position = other.transform.position;

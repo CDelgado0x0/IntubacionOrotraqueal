@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static OVRPlugin;
 
 public class GameManager : MonoBehaviour
 {
@@ -140,10 +141,10 @@ public class GameManager : MonoBehaviour
 
     public void updateGameState(GameState newState){
 
-        if (state != GameState.menuPrincipal && state != GameState.simulacionTerminada){
-            correctSound.Play();
-            myDatabase.LogAction("Avanza al siguiente paso", true, "Siguiente paso: " + newState);
-        }
+        //if (state != GameState.menuPrincipal && state != GameState.simulacionTerminada)
+
+        CorrectSoundPlayer(newState);
+        myDatabase.LogAction("Paso realizado: " + state, true, "Siguiente paso: " + newState);
 
         pasosCanula.SetActive(false);
         pasoColocarPrimerAmbu.SetActive(false);
@@ -273,6 +274,22 @@ public class GameManager : MonoBehaviour
             LEDPantallas.SetTexture("_BaseMap", instrucciones[index]);
             LEDPantallas.SetTexture("_EmissionMap", instrucciones[index]);
         }
+    }
+
+    private void CorrectSoundPlayer(GameState step)
+    {
+        if (correctSound == null) return;
+        int stepIndex = (int)step;
+
+        float minPitch = 0.9f;
+        float maxPitch = 1f;
+
+        
+        int totalSteps = (int)GameState.simulacionTerminada;
+        Debug.Log("Step Index: " + (float)stepIndex / totalSteps);
+        float pitch = Mathf.Lerp(minPitch, maxPitch, (float)stepIndex / totalSteps);
+        correctSound.pitch = pitch;
+        correctSound.Play();
     }
 
     private void OpenInGameMenu()

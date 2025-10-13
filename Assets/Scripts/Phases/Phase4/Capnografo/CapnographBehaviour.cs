@@ -7,6 +7,8 @@ public class CapnographBehaviour : MonoBehaviour
 
     private Rigidbody myRb;
 
+    [SerializeField] private AudioSource connectSound;
+
     void Start()
     {
         myRb = GetComponent<Rigidbody>();
@@ -16,6 +18,7 @@ public class CapnographBehaviour : MonoBehaviour
     {
         if (other.CompareTag("CapnographDetectable"))
         {
+            connectSound.Play();
             CapnographHands.SetActive(false);
             myRb.isKinematic = true;
             transform.position = other.transform.position;

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 81e23cf0ef1642646a05c57297e2a6cf
+guid: f385bfad004021e4a85c85ed227ac2ef
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -17,98 +17,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Aluminio_Taburete
-    second: {fileID: 2100000, guid: 3edadb098b00a4141b07e2f6dd353617, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Amarrilla
-    second: {fileID: 2100000, guid: b61d1a55753b9b24fa220a1c1ca3e793, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Barra
-    second: {fileID: 2100000, guid: 6773c9288473bf8469cc1b6ec6a187d4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Caja
-    second: {fileID: 2100000, guid: 45a9b273ca3521740b457dd9813947af, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Enchufes1
-    second: {fileID: 2100000, guid: ed30ff587027f8a48ba255866cd03e2c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Enchufes2
-    second: {fileID: 2100000, guid: af5680825f048d44a9c491c3d06883fe, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Goma_Taburete
-    second: {fileID: 2100000, guid: d998f1d92da85d441a22a41bf08140ce, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Grifo
-    second: {fileID: 2100000, guid: 22ff5f648403972448322840b922db49, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Hierros
-    second: {fileID: 2100000, guid: 8f4d36fd9a537ad4aafcc3c6802abe62, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Hierros.001
-    second: {fileID: 2100000, guid: cec6ab76e060fad41a5cf0e134c331f0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: Luz
     second: {fileID: 2100000, guid: 6ec74993ff167a94a916ebe70b80179b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Madera
-    second: {fileID: 2100000, guid: 9db6ad9ddaea6044988e43238be69678, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Madera.001
-    second: {fileID: 2100000, guid: 3b4532cb9af0e17479ecc6e02e72b1dd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Marco
-    second: {fileID: 2100000, guid: b14414d95daa1414cbe337a3d852c1b9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pared
-    second: {fileID: 2100000, guid: cb12726267276f345a0605ff70fa71bc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pila
-    second: {fileID: 2100000, guid: 8c77fd40afa7abf46a397876924745b2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pomo
-    second: {fileID: 2100000, guid: b28a74529d1012743b7a537838a7e4ec, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Suelo
-    second: {fileID: 2100000, guid: d1ccf0a0b575ec5449c67232444b5d01, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Tabla
-    second: {fileID: 2100000, guid: ff0b93befbe20a44a8cf438ed28c229c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
