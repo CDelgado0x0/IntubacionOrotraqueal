@@ -15,6 +15,7 @@ public class LaryngoscopeConexion : MonoBehaviour
     [SerializeField] private GameObject laryngoscopeCameraCover;
     [SerializeField] private GameObject completeLaryngoscopeVisual;
     [SerializeField] private GameObject completeLaryngoscopeHands;
+    [SerializeField] private GameObject completeLaryngoscopeLight;
     [SerializeField] private GameObject firstPhaseCanvas;
     [SerializeField] private GameObject secondPhaseCanvas;
     [SerializeField] private Collider ganchoCollider;
@@ -41,6 +42,7 @@ public class LaryngoscopeConexion : MonoBehaviour
         nuevosCollidersGancho = transform.Find("GanchoColliders");
         completeLaryngoscopeVisual.SetActive(false);
         completeLaryngoscopeHands.SetActive(false);
+        completeLaryngoscopeLight.SetActive(false);
         firstPhaseCanvas.SetActive(true);
         secondPhaseCanvas.SetActive(false);
     }
@@ -86,6 +88,7 @@ public class LaryngoscopeConexion : MonoBehaviour
         {
             completeLaryngoscopeVisual.SetActive(true);
             completeLaryngoscopeHands.SetActive(true);
+            completeLaryngoscopeLight.SetActive(true);
             firstPhaseCanvas.SetActive(false);
             secondPhaseCanvas.SetActive(true);
             gameObject.SetActive(false);
