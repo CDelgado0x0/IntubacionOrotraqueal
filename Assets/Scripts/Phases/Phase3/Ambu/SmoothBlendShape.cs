@@ -154,6 +154,8 @@ public class SmoothBlendShape : MonoBehaviour
 
     private void ValidateInflation()
     {
+        if (!primerUso && !segundoUso) return;
+
         float currentTime = Time.time;
 
         if (lastInflationTime > 0f)
@@ -162,7 +164,7 @@ public class SmoothBlendShape : MonoBehaviour
             if (interval >= minInterval && interval <= maxInterval)
             {
                 successTimer += interval;
-                respiracionCorrecta.Play();
+                if (successTimer < requiredTime) respiracionCorrecta.Play();
                 insuflacionesCorrectas += 1;
             }
             else
