@@ -2,7 +2,6 @@ using Oculus.Interaction;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class LaryngoscopeBehaviour : MonoBehaviour
 {
