@@ -32,8 +32,11 @@ public class MainMenuBehaviour : MonoBehaviour
     public void startButton()
     {
         mainMenu.SetActive(false);
+        Debug.Log("Linea 35 de MainMenuBehaviour");
         GameManager.applicationController.updateGameState(GameState.encenderLaringoscopio);
+        Debug.Log("Linea 37 de MainMenuBehaviour");
         GameManager.applicationController.myDatabase.LogAction("Inicio de la simulación", true, "");
+        Debug.Log("Linea 38 de MainMenuBehaviour");
     }
 
     public void changeToSpanish()

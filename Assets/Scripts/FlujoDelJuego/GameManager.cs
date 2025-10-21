@@ -76,7 +76,15 @@ public class GameManager : MonoBehaviour
 
         applicationController = this;
 
-    }
+        if (instruccionesPorIdioma == null)
+        {
+            instruccionesPorIdioma = new Dictionary<Language, Texture[]>
+        {
+            { Language.Spanish, instruccionesES },
+            { Language.English, instruccionesEN }
+        };
+            }
+        }
 
     void Start(){
         updateGameState(GameState.menuPrincipal);
@@ -106,20 +114,12 @@ public class GameManager : MonoBehaviour
         {
             logInMenu.SetActive(true);
         }
-    }
 
-    private void OnValidate() //Esto sirve para poder cambiar el estado desde el inspector, comentar si no es necesario.
-    {
-        if (instruccionesPorIdioma == null)
+        instruccionesPorIdioma = new Dictionary<Language, Texture[]>
         {
-            instruccionesPorIdioma = new Dictionary<Language, Texture[]>
-            {
-                { Language.Spanish, instruccionesES },
-                { Language.English, instruccionesEN }
-            };
-        }
-
-        updateGameState(state);
+            { Language.Spanish, instruccionesES },
+            { Language.English, instruccionesEN }
+        };
     }
 
     private void Update()
@@ -144,20 +144,32 @@ public class GameManager : MonoBehaviour
 
         //if (state != GameState.menuPrincipal && state != GameState.simulacionTerminada)
 
-        if((int)newState < (int)state)
+        Debug.Log("Linea 146 de GameManager. Se actualiza el estado del juego");
+
+        if ((int)newState < (int)state)
             wrongSound.Play();
         else
             CorrectSoundPlayer(newState);
 
-        myDatabase.LogAction("Paso realizado: " + state, true, "Siguiente paso: " + newState);
+        if(newState != GameState.menuPrincipal)
+            myDatabase.LogAction("Paso realizado: " + state, true, "Siguiente paso: " + newState);
+
+        Debug.Log("Linea 156 de GameManager. Se pasa de nivel.");
 
         pasosCanula.SetActive(false);
+        Debug.Log("Linea 159 de GameManager. Se desactiva pasosCanula.");
         pasoColocarPrimerAmbu.SetActive(false);
+        Debug.Log("Linea 161 de GameManager. Se desactiva pasoColocarPrimerAmbu.");
         pasoInsertarTubo.SetActive(false);
+        Debug.Log("Linea 163 de GameManager. Se desactiva pasoInsertarTubo.");
         pasoInsertarLaringo.SetActive(false);
+        Debug.Log("Linea 165 de GameManager. Se desactiva pasoInsertarLaringo.");
         pasoInsertarCapnografo.SetActive(false);
+        Debug.Log("Linea 167 de GameManager. Se desactiva pasoInsertarCapnografo.");
         pasoPosicionFinalAmbu.SetActive(false);
+        Debug.Log("Linea 169 de GameManager. Se desactiva pasoPosicionFinalAmbu.");
         pasoColocarFijador.SetActive(false);
+        Debug.Log("Linea 171 de GameManager. Se desactiva pasoColocarFijador.");
 
         state = newState;
 
@@ -268,17 +280,23 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
+        Debug.Log("Linea 275 de GameManager. Se va a invocar el nuevo estado");
         onGameStateChanged?.Invoke(newState);
+        Debug.Log("Linea 277 de GameManager. Se ha invocado el nuevo estado");
     }
 
     private void SetPantalla(int index)
     {
+        Debug.Log("Linea 283 de GameManager. Se va a cambiar la pantalla.");
         Texture[] instrucciones = instruccionesPorIdioma[idiomaActual];
+        Debug.Log("Linea 286 de GameManager. Se obtuvo el conjunto de instrucciones para el idioma actual.");
         if (index >= 0 && index < instrucciones.Length)
         {
             LEDPantallas.SetTexture("_BaseMap", instrucciones[index]);
             LEDPantallas.SetTexture("_EmissionMap", instrucciones[index]);
+            Debug.Log("Linea 291 de GameManager. Pantalla cambiada al índice: " + index);
         }
+        Debug.Log("Linea 296 de GameManager. Se cambió");
     }
 
     private void CorrectSoundPlayer(GameState step)
@@ -291,7 +309,6 @@ public class GameManager : MonoBehaviour
 
         
         int totalSteps = (int)GameState.simulacionTerminada;
-        Debug.Log("Step Index: " + (float)stepIndex / totalSteps);
         float pitch = Mathf.Lerp(minPitch, maxPitch, (float)stepIndex / totalSteps);
         correctSound.pitch = pitch;
         correctSound.Play();
@@ -299,15 +316,18 @@ public class GameManager : MonoBehaviour
 
     private void OpenInGameMenu()
     {
+        Debug.Log("Linea 315 de GameManager. Se abre el menú de juego.");
         inGameMenu.SetActive(true);
         
         if(idiomaActual == Language.Spanish)
         {
             spanishInGame.SetActive(true);
+            Debug.Log("Linea 320 de GameManager. Menú en español activado.");
         }
         else
         {
             englishInGame.SetActive(true);
+            Debug.Log("Linea 325 de GameManager. Menú en inglés activado.");
         }
     }
 
@@ -320,6 +340,7 @@ public class GameManager : MonoBehaviour
 
     public void OpenEndGameMenu()
     {
+        Debug.Log("Linea 332 de GameManager. Se abre el menú de fin de juego.");
         CloseInGameMenu();
 
         endGameMenu.SetActive(true);
