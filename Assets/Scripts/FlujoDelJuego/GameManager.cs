@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager applicationController;
 
-    public GameState state;
+    public GameState state = GameState.menuPrincipal;
     public static event Action<GameState> onGameStateChanged;
 
     public Material LEDPantallas;
@@ -79,6 +79,16 @@ public class GameManager : MonoBehaviour
     }
 
     void Start(){
+
+        if (instruccionesPorIdioma == null)
+        {
+            instruccionesPorIdioma = new Dictionary<Language, Texture[]>
+            {
+                { Language.Spanish, instruccionesES },
+                { Language.English, instruccionesEN }
+            };
+        }
+
         updateGameState(GameState.menuPrincipal);
         pasosCanula.SetActive(false);
         pasoColocarPrimerAmbu.SetActive(false);
@@ -106,20 +116,6 @@ public class GameManager : MonoBehaviour
         {
             logInMenu.SetActive(true);
         }
-    }
-
-    private void OnValidate() //Esto sirve para poder cambiar el estado desde el inspector, comentar si no es necesario.
-    {
-        if (instruccionesPorIdioma == null)
-        {
-            instruccionesPorIdioma = new Dictionary<Language, Texture[]>
-            {
-                { Language.Spanish, instruccionesES },
-                { Language.English, instruccionesEN }
-            };
-        }
-
-        updateGameState(state);
     }
 
     private void Update()
