@@ -54,7 +54,6 @@ public class SupabaseClient : MonoBehaviour
     // Método público para subir cualquier acción, con callback opcional para respuesta o error
     public void LogAction(string actionName, bool wasCorrect, string comment = "")
     {
-        return;
         // Verificar si hay UID guardado
         if (!PlayerPrefs.HasKey("user_uid"))
         {
