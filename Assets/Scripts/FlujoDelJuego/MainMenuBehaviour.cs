@@ -56,6 +56,8 @@ public class MainMenuBehaviour : MonoBehaviour
 
     public void quitButton()
     {
+        PlayerPrefs.DeleteKey("user_uid");
+        PlayerPrefs.Save();
         Application.Quit();
     }
 

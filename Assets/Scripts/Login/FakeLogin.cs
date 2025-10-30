@@ -50,13 +50,18 @@ public class FakeLogin : MonoBehaviour
 
     public void OnFakeLoginButtonPressed()
     {
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            mensajeTexto.text = "No hay conexión a internet.";
+            return;
+        }
+
         string email = emailInputField.text.Trim().ToLower();
         string password = passwordInputField.text;
 
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
             mensajeTexto.text = "El email y la contraseña son obligatorios.";
-            Debug.LogWarning("Email and password are required");
             return;
         }
 
@@ -86,7 +91,6 @@ public class FakeLogin : MonoBehaviour
             {
                 UIDWrapper result = JsonUtility.FromJson<UIDWrapper>(responseText);
                 mensajeTexto.text = "Inicio de sesión correcto.";
-                Debug.Log("Login successful. UID: " + result.uid);
 
                 PlayerPrefs.SetString("user_uid", result.uid);
 
@@ -108,7 +112,6 @@ public class FakeLogin : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Login failed: " + responseText);
                 LoginExitoso = false;
             }
         }
@@ -125,7 +128,6 @@ public class FakeLogin : MonoBehaviour
             {
                 mensajeTexto.text = $"Error en la conexión: {request.responseCode}";
             }
-            Debug.LogError("HTTP error: " + request.responseCode + " - " + request.downloadHandler.text);
             LoginExitoso = false;
         }
     }
