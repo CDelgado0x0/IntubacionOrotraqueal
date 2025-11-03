@@ -169,6 +169,12 @@ MonoBehaviour:
     - line: '|   preloadedAssets:'
     - line: '|   - {fileID: 11400000, guid: 5e641bf2a188d234ca8805e2273a51e2, type:
         2}'
+    - line: '|   - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b,
+        type: 3}'
+    - line: '|   - {fileID: 2576774305800839354, guid: 438caf1f92684034483de868c2a9433c,
+        type: 2}'
+    - line: '|   - {fileID: 11400000, guid: 41a9449ffc01a2e4e90af15ccddd46d6, type:
+        2}'
     - line: '|   metroInputSource: 0'
     - line: '|   wsaTransparentSwapchain: 0'
     - line: '|   m_HolographicPauseOnTrackingLoss: 1'
@@ -970,11 +976,12 @@ MonoBehaviour:
     - line: '|   qnxGraphicConfPath: '
     - line: '|   apiCompatibilityLevel: 6'
     - line: '|   captureStartupLogs: {}'
-    - line: '|   activeInputHandler: 2'
+    - line: '|   activeInputHandler: 1'
     - line: '|   windowsGamepadBackendHint: 0'
     - line: '|   cloudProjectId: c16df64d-7b55-478e-bf8f-33a2e817e828'
     - line: '|   framebufferDepthMemorylessMode: 0'
-    - line: '|   qualitySettingsNames: []'
+    - line: '|   qualitySettingsNames:'
+    - line: '|   - PC'
     - line: '|   projectName: IntubacionOrotraqueal'
     - line: '|   organizationId: cdelgado0x0'
     - line: '|   cloudEnabled: 0'

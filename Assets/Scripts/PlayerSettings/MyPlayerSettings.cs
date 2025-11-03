@@ -40,6 +40,4 @@ public class MyPlayerSettings : MonoBehaviour
             playerController.SnapRotation = true;
         }
     }
-
-
 }
