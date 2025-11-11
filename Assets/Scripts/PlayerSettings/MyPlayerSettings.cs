@@ -1,13 +1,37 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MyPlayerSettings : MonoBehaviour
 {
     [Header("Asigna el OVRCameraRig")]
-    public Transform rig; // OVRCameraRig principal
+    [SerializeField] private Transform rig;
 
     [Header("Asigna el OVRPlayerController")]
-    public OVRPlayerController playerController; // OVRCameraRig principal
+    [SerializeField] private OVRPlayerController playerController;
 
+    [Header("Asigna el slider y texto de velocidad de movimiento")]
+    [SerializeField] private Slider movementSpeedSlider;
+    [SerializeField] private TextMeshProUGUI movementSliderText;
+    private float percentageMovement;
+
+    [Header("Asigna el slider y texto de velocidad de rotacion")]
+    [SerializeField] private Slider rotationSpeedSlider;
+    [SerializeField] private TextMeshProUGUI rotationSliderText;
+    private float percentageRotation;
+
+    void Start()
+    {
+        //Valores iniciales de movimiento
+        movementSpeedSlider.value = playerController.Acceleration;
+        percentageMovement = (playerController.Acceleration - movementSpeedSlider.minValue) / (movementSpeedSlider.maxValue - movementSpeedSlider.minValue) * 100f;
+        movementSliderText.SetText($"{percentageMovement:0}%");
+
+        //Valores iniciales de rotacion
+        rotationSpeedSlider.value = playerController.RotationAmount;
+        percentageRotation = (playerController.RotationAmount - rotationSpeedSlider.minValue) / (rotationSpeedSlider.maxValue - rotationSpeedSlider.minValue) * 100f;
+        rotationSliderText.SetText($"{percentageRotation:0}%");
+    }
 
     [ContextMenu("Recentrar")]
     public void RecenterOrigin()
@@ -29,15 +53,24 @@ public class MyPlayerSettings : MonoBehaviour
     }
 
     [ContextMenu("Cambiar tipo rotacion")]
-    public void SetSnapTurn()
+    public void SetSnapTurn(bool snapRotation)
     {
-        if (playerController.SnapRotation)
-        {
-            playerController.SnapRotation = false;
-        }
-        else
-        {
-            playerController.SnapRotation = true;
-        }
+        playerController.SnapRotation = snapRotation;
+    }
+
+    public void OnChangeMovementSpeedSlider(float Value)
+    {
+        percentageMovement = (Value - movementSpeedSlider.minValue) / (movementSpeedSlider.maxValue - movementSpeedSlider.minValue) * 100f;
+
+        movementSliderText.SetText($"{percentageMovement:0}%");
+        playerController.Acceleration = Value;
+    }
+
+    public void OnChangeRotationSpeedSlider(float Value)
+    {
+        percentageRotation = (Value - rotationSpeedSlider.minValue) / (rotationSpeedSlider.maxValue - rotationSpeedSlider.minValue) * 100f;
+
+        rotationSliderText.SetText($"{percentageRotation:0}%");
+        playerController.RotationAmount = Value;
     }
 }
