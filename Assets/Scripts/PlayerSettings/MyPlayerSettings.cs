@@ -42,7 +42,7 @@ public class MyPlayerSettings : MonoBehaviour
         Vector3 offset = Camera.main.transform.position - rig.position;
 
         // Mueve el rig de forma que la cámara quede centrada donde está ahora
-        rig.localPosition = Vector3.zero;
+        rig.localPosition = new Vector3(0, rig.localPosition.y, 0);
         rig.position -= new Vector3(offset.x, 0, offset.z);
 
         // Opcional: alinear orientación al frente del jugador
