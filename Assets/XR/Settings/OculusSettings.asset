@@ -18,11 +18,11 @@ MonoBehaviour:
   DepthSubmission: 0
   DashSupport: 1
   LowOverheadMode: 0
-  OptimizeBufferDiscards: 1
+  OptimizeBufferDiscards: 0
   PhaseSync: 1
   SymmetricProjection: 1
   SubsampledLayout: 0
-  FoveatedRenderingMethod: 0
+  FoveatedRenderingMethod: 3
   LateLatching: 0
   LateLatchingDebug: 0
   EnableTrackingOriginStageMode: 0
