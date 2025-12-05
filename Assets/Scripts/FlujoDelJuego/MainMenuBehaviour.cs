@@ -18,13 +18,13 @@ public class MainMenuBehaviour : MonoBehaviour
         if (PlayerPrefs.HasKey("Lenguage"))
         {
             string lang = PlayerPrefs.GetString("Lenguage");
-            if (lang == "Spanish")
+            if (lang == "English")
             {
-                changeToSpanish();
+                changeToEnglish();
             }
             else
             {
-                changeToEnglish();
+                changeToSpanish();
             }
         }
     }
