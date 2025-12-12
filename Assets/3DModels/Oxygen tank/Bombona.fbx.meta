@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Bombona
-    second: {fileID: 2100000, guid: a81eb9396bb54e54aafa4cb1da410728, type: 2}
+    second: {fileID: 2100000, guid: be9115a9f00393949baa503242c2d441, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

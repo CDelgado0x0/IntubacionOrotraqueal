@@ -13,17 +13,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Gancho.001
-    second: {fileID: 2100000, guid: 50dbfc05268be8e48831bdd948e3f1ed, type: 2}
+    second: {fileID: 2100000, guid: be9115a9f00393949baa503242c2d441, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Manometro
-    second: {fileID: 2100000, guid: aa73342e823dd7144a561e089992f75d, type: 2}
+    second: {fileID: 2100000, guid: be9115a9f00393949baa503242c2d441, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Valvula
-    second: {fileID: 2100000, guid: 83bb000aa864241428ef34e07ef68048, type: 2}
+    second: {fileID: 2100000, guid: be9115a9f00393949baa503242c2d441, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

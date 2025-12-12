@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Aluminio
-    second: {fileID: 2100000, guid: 0ef649b504461ca4da56dbb9eb91bb63, type: 2}
+    second: {fileID: 2100000, guid: be9115a9f00393949baa503242c2d441, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material
-    second: {fileID: 2100000, guid: 69a1bb7deee4c614aac481e5df50cf35, type: 2}
+    second: {fileID: 2100000, guid: be9115a9f00393949baa503242c2d441, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

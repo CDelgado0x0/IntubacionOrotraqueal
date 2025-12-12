@@ -8,17 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Caja
-    second: {fileID: 2100000, guid: 45a9b273ca3521740b457dd9813947af, type: 2}
+    second: {fileID: 2100000, guid: be9115a9f00393949baa503242c2d441, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Hierros
-    second: {fileID: 2100000, guid: 8f4d36fd9a537ad4aafcc3c6802abe62, type: 2}
+    second: {fileID: 2100000, guid: be9115a9f00393949baa503242c2d441, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Tabla
-    second: {fileID: 2100000, guid: ff0b93befbe20a44a8cf438ed28c229c, type: 2}
+    second: {fileID: 2100000, guid: be9115a9f00393949baa503242c2d441, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

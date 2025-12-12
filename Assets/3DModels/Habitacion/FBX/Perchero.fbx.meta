@@ -8,17 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Amarrilla
-    second: {fileID: 2100000, guid: b61d1a55753b9b24fa220a1c1ca3e793, type: 2}
+    second: {fileID: 2100000, guid: be9115a9f00393949baa503242c2d441, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Hierros.001
-    second: {fileID: 2100000, guid: cec6ab76e060fad41a5cf0e134c331f0, type: 2}
+    second: {fileID: 2100000, guid: be9115a9f00393949baa503242c2d441, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Madera.001
-    second: {fileID: 2100000, guid: 3b4532cb9af0e17479ecc6e02e72b1dd, type: 2}
+    second: {fileID: 2100000, guid: be9115a9f00393949baa503242c2d441, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
