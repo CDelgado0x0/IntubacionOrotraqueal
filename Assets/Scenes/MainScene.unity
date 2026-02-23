@@ -43478,6 +43478,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7158118945856100011, guid: 26a0807e0bf27df4c95670c52642c79e, type: 3}
+      propertyPath: hapticSource
+      value: 
+      objectReference: {fileID: 3463884221230773724}
+    - target: {fileID: 7158118945856100011, guid: 26a0807e0bf27df4c95670c52642c79e, type: 3}
       propertyPath: patientAnimator
       value: 
       objectReference: {fileID: 49667278}
@@ -43548,7 +43552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9dc93c7e1ae142448d4a122be86ea8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clip: {fileID: 0}
+  _clip: {fileID: 2460798210113038985, guid: 16cbb565e01642949b6bb8f7ff87f2f6, type: 3}
   _controller: 2
   _loop: 0
   _amplitude: 1

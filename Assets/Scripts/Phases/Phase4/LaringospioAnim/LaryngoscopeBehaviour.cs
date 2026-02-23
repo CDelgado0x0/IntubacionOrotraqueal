@@ -1,3 +1,4 @@
+using Oculus.Haptics;
 using Oculus.Interaction;
 using System.Collections;
 using Unity.VisualScripting;
@@ -11,6 +12,7 @@ public class LaryngoscopeBehaviour : MonoBehaviour
     [SerializeField] private GameObject myCollider;
     [SerializeField] private Rigidbody rbParent;
     [SerializeField] private Grabbable myGrab;
+    [SerializeField] private HapticSource hapticSource;
 
     [Header("Transformers")]
     [SerializeField] private GrabFreeTransformer basicGrab;
@@ -114,6 +116,7 @@ public class LaryngoscopeBehaviour : MonoBehaviour
                 secondStepDone = true;
                 myHands.SetActive(false);
                 myCollider.SetActive(false);
+                hapticSource.Play();
 
                 GameManager.applicationController.updateGameState(nextState);
                 secondMovementActive = false;
