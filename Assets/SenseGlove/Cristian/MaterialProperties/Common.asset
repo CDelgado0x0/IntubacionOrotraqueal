@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Common
   m_EditorClassIdentifier: 
   maxForce: 1
-  maxForceDist: 0.02
+  maxForceDist: 50
   forceRepsonse:
     serializedVersion: 2
     m_Curve:
