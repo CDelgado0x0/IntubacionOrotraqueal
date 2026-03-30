@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3b9d9689fae93418e33472f9eccaa7, type: 3}
+  m_Name: BhapticsSettings
+  m_EditorClassIdentifier: 
+  appName: Unity
+  appId: 69c529cb64719a5e93437fb1
+  apiKey: AtOigNe8Sudxg2jFiJyh
+  lastDeployVersion: 1
+  eventData:
+  - durationMillis: 140
+    key: prueba1
+    description: 
+    isAudio: 1
+    updateTime: 1774529089441
+    positions: []
+  defaultDeploy: '{"status":true,"message":{"id":"69c52a4764719a5e93438013","createTime":1774529095017,"name":"Unity","creator":"L7JS46klSVUgpsJGjvXYp17d5TY2","workspaceId":"69c529cb64719a5e93437fb1","version":1,"disableValidation":false,"hapticMappings":[{"id":"69c52a4764719a5e93438014","deployId":"69c52a4764719a5e93438013","enable":true,"intensity":100,"key":"prueba1","category":"Default","description":"","updateTime":1774529089441,"tactFilePatterns":[],"audioFilePatterns":[{"patternId":"69b8dde2148c6f175cbedb97","snapshotId":"69b9175269a77de08b4c239b","position":"Vest","clip":{"id":"","name":"Slap
+    (Left Hand)","version":2,"duration":4,"patterns":{"GloveL":["ZGRkZGRkAAAAAAAAAAAAAAAAAAA=","ZGRkZGRkAAAAAAAAAAAAAAAAAAA=","ZGRkZGRkAAAAAAAAAAAAAAAAAAA=","ZGRkZGRkAAAAAAAAAAAAAAAAAAA=","YWFhYWFhAAAAAAAAAAAAAAAAAAA=","Ojo6Ojo6AAAAAAAAAAAAAAAAAAA=","EhISEhISAAAAAAAAAAAAAAAAAAA="],"GloveR":["AAAAAAAAAAAAAAAAAAAAAAAAAAA=","AAAAAAAAAAAAAAAAAAAAAAAAAAA=","AAAAAAAAAAAAAAAAAAAAAAAAAAA=","AAAAAAAAAAAAAAAAAAAAAAAAAAA=","AAAAAAAAAAAAAAAAAAAAAAAAAAA=","AAAAAAAAAAAAAAAAAAAAAAAAAAA=","AAAAAAAAAAAAAAAAAAAAAAAAAAA="]}}},{"patternId":"69b8dde2148c6f175cbedb96","snapshotId":"69b9175269a77de08b4c239a","position":"Vest","clip":{"id":"","name":"Slap
+    (RIght Hand)","version":2,"duration":4,"patterns":{"GloveL":["AAAAAAAAAAAAAAAAAAAAAAAAAAA=","AAAAAAAAAAAAAAAAAAAAAAAAAAA=","AAAAAAAAAAAAAAAAAAAAAAAAAAA=","AAAAAAAAAAAAAAAAAAAAAAAAAAA=","AAAAAAAAAAAAAAAAAAAAAAAAAAA=","AAAAAAAAAAAAAAAAAAAAAAAAAAA=","AAAAAAAAAAAAAAAAAAAAAAAAAAA="],"GloveR":["ZGRkZGRkAAAAAAAAAAAAAAAAAAA=","ZGRkZGRkAAAAAAAAAAAAAAAAAAA=","ZGRkZGRkAAAAAAAAAAAAAAAAAAA=","ZGRkZGRkAAAAAAAAAAAAAAAAAAA=","YWFhYWFhAAAAAAAAAAAAAAAAAAA=","Ojo6Ojo6AAAAAAAAAAAAAAAAAAA=","EhISEhISAAAAAAAAAAAAAAAAAAA="]}}}],"eventTime":140}],"categoryOptions":["Default"],"description":""},"errorMessage":null,"timestamp":1774529098461,"code":200}'
